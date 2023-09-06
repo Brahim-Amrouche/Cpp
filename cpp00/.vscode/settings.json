@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "iostream": "cpp",
+        "iosfwd": "cpp",
+        "ostream": "cpp",
+        "phonebook.hpp": "c"
+    },
+    "C_Cpp.default.compilerPath": "/usr/bin/cpp",
+    "C_Cpp.errorSquiggles": "disabled"
+}
