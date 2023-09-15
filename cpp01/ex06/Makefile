@@ -1,8 +1,8 @@
-NAME = sed
+NAME = harlFilter
 
 FLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRCS = main.cpp sed.cpp
+SRCS = main.cpp Harl.cpp
 
 CC = c++
 
