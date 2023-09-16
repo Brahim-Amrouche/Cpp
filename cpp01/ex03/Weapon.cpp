@@ -6,7 +6,7 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 01:42:02 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/12 23:40:39 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/09/15 07:18:33 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ Weapon::Weapon(const Weapon &cpy_weapon)
 Weapon &Weapon::operator=(const Weapon &x)
 {
     type = x.type;
+    return (*this);
 }
 
 Weapon::~Weapon()

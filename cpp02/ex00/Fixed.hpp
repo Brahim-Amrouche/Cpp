@@ -1,34 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanA.cpp                                         :+:      :+:    :+:   */
+/*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/12 01:20:07 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/15 07:18:09 by bamrouch         ###   ########.fr       */
+/*   Created: 2023/09/15 05:30:19 by bamrouch          #+#    #+#             */
+/*   Updated: 2023/09/15 07:09:17 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "HumanA.hpp"
+#pragma once
+#ifndef FIXED_H
+#define FIXED_H
 
-HumanA::HumanA(std::string new_name, Weapon &r_weapon): name(new_name) , weapon(r_weapon){};
+#include "iostream"
 
-HumanA::HumanA(const HumanA &cpy_human): name(cpy_human.name), weapon(cpy_human.weapon)
-{};
+using   std::cout;
+using   std::endl;
 
-HumanA &HumanA::operator=(const HumanA &eq_human)
+
+class Fixed
 {
-    name = eq_human.name;
-    return (*this);
-}
+    private:
+        int              bits;
+        static const int fract = 8;
+    public:
+        Fixed();
+        Fixed(const Fixed &cpy_fixed);
+        Fixed &operator=(const Fixed &eq_fixed);
+        int   getRawBits(void);
+        void  setRawBits(int const raw);
+        ~Fixed();
+};
 
-void    HumanA::attack(void)
-{
-    cout << name << weapon.getType() << endl;
-}
-
-HumanA::~HumanA()
-{
-
-}
+#endif

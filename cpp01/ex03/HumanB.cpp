@@ -6,7 +6,7 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 22:23:34 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/13 01:36:14 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/09/15 07:18:17 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ HumanB  &HumanB::operator=(const HumanB &eq_human)
 {
     name = eq_human.name;
     weapon = eq_human.weapon;
+    return (*this);
 }
 
 void    HumanB::setWeapon(Weapon *new_weapon)

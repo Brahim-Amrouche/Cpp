@@ -6,7 +6,7 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 11:31:29 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/14 13:03:47 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/09/15 07:17:07 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ Harl::Harl(const Harl &cpy_harl):h_level(cpy_harl.h_level)
 Harl &Harl::operator=(const Harl &eq_harl)
 {
     h_level = eq_harl.h_level;
+    return (*this);
 }
 
 void    Harl::complain(string level)

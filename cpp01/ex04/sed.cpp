@@ -6,7 +6,7 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 01:38:13 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/13 11:50:16 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/09/15 07:17:48 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ Sed &Sed::operator=(const Sed &eq_sed)
     infile.copyfmt(eq_sed.infile);
     infile.clear();
     outfile.copyfmt(eq_sed.outfile);
-    outfile.clear();   
+    outfile.clear();
+    return (*this);
 };
 
 bool    Sed::replace_in_file(string s1, string s2)
