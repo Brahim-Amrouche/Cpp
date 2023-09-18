@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
+/*   DiamondTrap.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/17 11:34:30 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/17 17:12:01 by bamrouch         ###   ########.fr       */
+/*   Created: 2023/09/17 17:15:34 by bamrouch          #+#    #+#             */
+/*   Updated: 2023/09/17 17:40:57 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
-
-#include "ClapTrap.hpp"
-
-class ScavTrap : public ClapTrap
+class DiamondTrap : public ScavTrap, public FragTrap
 {
+    private:
+        string name;
     public:
-        ScavTrap();
-        ScavTrap(string new_name);
-        ScavTrap(const ScavTrap &cpy_scav);
-        ScavTrap &operator=(const ScavTrap &eq_scav);
-        virtual void attack(const string &target) override;
-        void    guardGate(void);
-        ~ScavTrap();
+        DiamondTrap();
+        DiamondTrap(string new_name);
+        DiamondTrap(const DiamondTrap &cpy_diamond);
+        DiamondTrap &operator=(const DiamondTrap &eq_diamond);
+        void        whoAmI(void);
+        ~DiamondTrap();
 };

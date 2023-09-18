@@ -6,7 +6,7 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 11:34:30 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/17 17:12:01 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/09/17 17:36:38 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 #include "ClapTrap.hpp"
 
-class ScavTrap : public ClapTrap
+class ScavTrap : public virtual ClapTrap
 {
     public:
         ScavTrap();
