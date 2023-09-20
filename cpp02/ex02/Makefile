@@ -2,7 +2,7 @@ NAME = fixed
 
 FLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRCS = main.c Fixed.cpp
+SRCS = main.cpp Fixed.cpp
 
 CC = c++
 

@@ -6,7 +6,7 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 05:30:19 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/16 17:36:16 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/09/20 19:09:01 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ class Fixed
         Fixed(const float f_raw);
         Fixed(const Fixed &cpy_fixed);
         Fixed &operator=(const Fixed &eq_fixed);
-        int   getRawBits(void) const;
+        int   getRawBits(void);
         void  setRawBits(int const raw);
         float toFloat(void) const;
         int   toInt(void) const;
-        ostream &operator<<(ostream &os) const;
+
         bool    operator==(const Fixed &other) const;
         bool    operator!=(const Fixed &other) const;
         bool    operator>(const Fixed &other) const;
@@ -49,14 +49,17 @@ class Fixed
         Fixed    operator*(const Fixed &other);
         Fixed    operator/(const Fixed &other);
         Fixed   &operator++();
-        Fixed   operator++(int _);
+        Fixed   operator++(int);
         Fixed   &operator--();
-        Fixed   operator--(int _);
+        Fixed   operator--(int);
+
         static  Fixed   &min(Fixed &first, Fixed &second);
         static  const Fixed   &min(const Fixed &first, const Fixed &second);
         static  Fixed   &max(Fixed &first, Fixed &second);
         static  const Fixed   &max(const Fixed &first,const Fixed &second);
         ~Fixed();
 };
+
+ostream &operator<<(ostream &os, const Fixed &obj);
 
 #endif

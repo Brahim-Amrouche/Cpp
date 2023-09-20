@@ -1,33 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Fixed.hpp                                          :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/15 05:30:19 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/20 18:37:28 by bamrouch         ###   ########.fr       */
+/*   Created: 2023/09/20 18:02:10 by bamrouch          #+#    #+#             */
+/*   Updated: 2023/09/20 18:06:53 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
 
-#include "iostream"
-
-using   std::cout;
-using   std::endl;
-
-
-class Fixed
+#include "Fixed.hpp"
+int main()
 {
-    private:
-        int              bits;
-        static const int fract = 8;
-    public:
-        Fixed();
-        Fixed(const Fixed &cpy_fixed);
-        Fixed &operator=(const Fixed &eq_fixed);
-        int   getRawBits(void);
-        void  setRawBits(int const raw);
-        ~Fixed();
-};
+    Fixed  x;
+    Fixed  y;
+
+    y.setRawBits(5);
+    cout << "raw bits x " << x.getRawBits()  << endl;
+    cout  << "and then y " << y.getRawBits() << endl;
+}

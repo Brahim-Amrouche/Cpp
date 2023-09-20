@@ -6,13 +6,11 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 05:30:19 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/15 14:10:08 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/09/20 19:01:36 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#ifndef FIXED_H
-#define FIXED_H
 
 #include "iostream"
 #include "cmath"
@@ -36,8 +34,7 @@ class Fixed
         void  setRawBits(int const raw);
         float toFloat(void) const;
         int   toInt(void) const;
-        ostream &operator<<(ostream &os) const;
         ~Fixed();
 };
 
-#endif
+ostream& operator<<(ostream& os, const Fixed& obj);

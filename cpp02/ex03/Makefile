@@ -2,7 +2,7 @@ NAME = bsp
 
 FLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRCS = main.c Fixed.cpp bsp.cpp Point.cpp
+SRCS = main.cpp Fixed.cpp bsp.cpp Point.cpp
 
 CC = c++
 

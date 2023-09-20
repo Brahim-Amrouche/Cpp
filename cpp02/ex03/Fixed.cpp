@@ -6,7 +6,7 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 06:48:04 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/16 17:36:41 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/09/20 19:23:28 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ Fixed::Fixed(const int i_raw)
 Fixed::Fixed(const float f_raw)
 {
     cout << "Float constructor called" << endl;
-    bits = roundf(f_raw * (1 << fract));
+    bits = roundf((float) f_raw * (1 << fract));
 }
 
 Fixed::Fixed(const Fixed &cpy_fixed):bits(cpy_fixed.bits)
@@ -41,7 +41,7 @@ Fixed &Fixed::operator=(const Fixed &eq_fixed)
     return (*this);
 };
 
-int Fixed::getRawBits(void) const
+int Fixed::getRawBits(void)
 {
     cout << "getRawBits member function called" << endl;
     return bits;
@@ -60,12 +60,12 @@ int     Fixed::toInt(void) const
 
 float   Fixed::toFloat(void) const
 {
-    return bits / (1 << fract);   
+    return (float) bits / (1 << fract);   
 }
 
-ostream &Fixed::operator<<(ostream &os) const
+ostream& operator<<(ostream& os, const Fixed& obj) 
 {
-    os << toFloat();
+    os << obj.toFloat();
     return os;
 }
 
@@ -131,11 +131,11 @@ Fixed    Fixed::operator/(const Fixed &other)
 
 Fixed    &Fixed::operator++()
 {
-    *this = *this + Fixed((float) 1.0);   
+    bits += 1;   
     return (*this);
 }
 
-Fixed   Fixed::operator++(int _)
+Fixed   Fixed::operator++(int)
 {
     Fixed   cpy = *this;
     this->operator++();
@@ -145,11 +145,11 @@ Fixed   Fixed::operator++(int _)
 
 Fixed &Fixed::operator--()
 {
-    *this = *this - Fixed((float) 1.0);
+    bits -= 1;
     return (*this);
 }
 
-Fixed Fixed::operator--(int _)
+Fixed Fixed::operator--(int)
 {
     Fixed cpy = *this;
     this->operator--();
