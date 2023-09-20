@@ -6,7 +6,7 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 01:38:13 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/15 07:17:48 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/09/20 12:20:34 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,13 @@
 
 Sed::Sed(string in_path, string out_path)
 {
-    infile.open(in_path, ios::in);
+    infile.open(in_path.c_str(), ios::in);
     if (!infile)
+    {
         cerr << "coulnd't open input file" << endl;
-    outfile.open(out_path, ios::out | ios::trunc);
+        return;
+    }
+    outfile.open(out_path.c_str(), ios::out | ios::trunc);
     if (!outfile)
         cerr << "couldn't open output file" << endl;
 };

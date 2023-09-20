@@ -6,7 +6,7 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 23:22:20 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/10 23:29:52 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/09/20 11:32:15 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,3 @@ void Zombie::announce(void)
     std::cout << name << ":" << "BraiiiiiiinnnzzzZ..." << std::endl;
 }
 
-Zombie  *zombieHorde(int N, std::string name)
-{
-
-}

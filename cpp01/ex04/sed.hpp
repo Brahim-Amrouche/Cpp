@@ -6,7 +6,7 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 01:38:18 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/13 11:46:04 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/09/20 12:08:04 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include "iostream"
 #include "fstream"
 
+using std::cout;
 using std::cin;
 using std::cerr;
 using std::endl;

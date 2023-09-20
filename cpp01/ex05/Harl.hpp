@@ -6,7 +6,7 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 11:31:22 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/14 12:58:22 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/09/20 13:00:59 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,16 @@ enum harLevels
 
 class Harl
 {
+    typedef void (Harl::*Complains)();
+
     private:
         harLevels  h_level;
         void debug( void );
         void info( void );
         void warning( void );
         void error( void );
-        void (Harl::*complain_fn[4])() = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
-        string  complains_str[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+        Complains Complains_list[4];
+        string  complains_str[4];
     public:
         Harl    ();
         Harl    (const Harl &cpy_harl);

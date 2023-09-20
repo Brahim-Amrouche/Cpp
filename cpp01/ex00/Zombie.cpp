@@ -12,7 +12,7 @@
 
 #include "Zombie.hpp"
 
-Zombie::Zombie(std::string z_name)
+Zombie::Zombie(string z_name)
 {
     name = z_name;
 }
@@ -30,10 +30,10 @@ Zombie &Zombie::operator=(const Zombie *zombie)
 
 Zombie::~Zombie(void)
 {
-    std::cout << name << ":" << "Gguhhhhh..." << std::endl;
+    cout << name << ":" << "Gguhhhhh..." << endl;
 }
 
 void Zombie::announce(void)
 {
-    std::cout << name << ":" << "BraiiiiiiinnnzzzZ..." << std::endl;
+    cout << name << ":" << "BraiiiiiiinnnzzzZ..." << endl;
 }

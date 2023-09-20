@@ -10,3 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+
+#include "Zombie.hpp"
+
+int main ()
+{
+    Zombie x = Zombie();
+    Zombie *y = x.newZombie("Walker");
+    if (y)
+    {
+        y->announce();
+        delete y;
+    }
+    x.randomChump("Fliper");
+}

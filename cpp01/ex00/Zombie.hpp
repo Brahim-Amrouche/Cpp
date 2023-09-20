@@ -6,30 +6,30 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 23:22:56 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/10 23:22:56 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/09/20 11:49:47 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#ifndef ZOMBIE_H
-#define ZOMBIE_H
 #pragma once
 #include "iostream"
 #include "string"
 
+using std::string;
+using std::cout;
+using std::cerr;
+using std::endl;
+
 class Zombie
 {
     private :
-        std::string name;
+        string name;
     public :
         Zombie(void):name(""){};
-        Zombie(std::string name);
+        Zombie(string name);
         Zombie(const Zombie *zombie);
         Zombie &operator=(const Zombie *zombie);
         ~Zombie(void);
         void    announce(void);
-        Zombie  *newZombie(std::string name);
-        void    randomChump(std::string name);
+        Zombie  *newZombie(string name);
+        void    randomChump(string name);
 };
-
-#endif
