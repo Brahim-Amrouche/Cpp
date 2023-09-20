@@ -16,12 +16,18 @@
 #include <string>
 #include <iostream>
 
+using std::string;
+using std::cout;
+using std::cin;
+using std::endl;
+using std::getline;
+
 struct Contact_data
 {
-    std::string first_name;
-    std::string last_name;
-    std::string phone_number;
-    std::string darkest_secret;
+    string first_name;
+    string last_name;
+    string phone_number;
+    string darkest_secret;
 	Contact_data(): first_name(""),
         last_name(""), phone_number(""), darkest_secret(""){};
     Contact_data(const Contact_data &contact):first_name(contact.first_name),

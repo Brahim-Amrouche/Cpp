@@ -64,8 +64,8 @@ void PhoneBook::display_contacts()
 
 void PhoneBook::display_contacts(int i)
 {
-    if (i <= 0 || i > 8)
-        std::cout << "Out of saved contacts range" << std::endl;
+    if (i <= 0 || (int) size < i || i > 8)
+        cout << "Out of saved contacts range" << endl;
     else
         contacts_list[i - 1].print_contact(false, i);
 }

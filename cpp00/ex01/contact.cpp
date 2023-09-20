@@ -28,28 +28,29 @@ Contact_data Contact::fill_contact_info()
 {
     Contact_data c_data;
     
-    std::cout << "enter the contact's first name: ";
-    std::cin >> c_data.first_name ;
-    std::cout << "enter the contact's last name: ";
-    std::cin >> c_data.last_name ;
-    std::cout << "enter the contact's phone number: ";
-    std::cin >> c_data.phone_number;
-    std::cout << "enter the contact's darkest secret: ";
-    std::cin >> c_data.darkest_secret;
+    cin.ignore();
+    cout << "enter the contact's first name: ";
+    getline(cin, c_data.first_name) ;
+    cout << "enter the contact's last name: ";
+    getline(cin, c_data.last_name);
+    cout << "enter the contact's phone number: ";
+    getline(cin, c_data.phone_number);
+    cout << "enter the contact's darkest secret: ";
+    getline(cin, c_data.darkest_secret);
     return c_data;
 }
 
 void Contact::print_contact(bool horizontal, int index)
 {
     if (horizontal)
-        std::cout << index << " | " <<contact_data.first_name << " | " << contact_data.last_name 
-            << " | " << contact_data.phone_number << " | " << contact_data.darkest_secret << std::endl;
+        cout << index << " | " <<contact_data.first_name << " | " << contact_data.last_name 
+            << " | " << contact_data.phone_number << " | " << contact_data.darkest_secret << endl;
     else
     {
-        std::cout << "-Index: " << index << std::endl;
-        std::cout << "-Contact first name: " << contact_data.first_name << std::endl;
-        std::cout << "-Contact last name: " << contact_data.last_name << std::endl;
-        std::cout << "-Contact phone number: " << contact_data.phone_number << std::endl;
-        std::cout << "-Contact darkest secret: " << contact_data.darkest_secret << std::endl; 
+        cout << "-Index: " << index << endl;
+        cout << "-Contact first name: " << contact_data.first_name << endl;
+        cout << "-Contact last name: " << contact_data.last_name << endl;
+        cout << "-Contact phone number: " << contact_data.phone_number << endl;
+        cout << "-Contact darkest secret: " << contact_data.darkest_secret << endl; 
     }
 }

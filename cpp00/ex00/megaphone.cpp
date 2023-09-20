@@ -14,27 +14,32 @@
 #include <string>
 #include <cstring>
 
-void    string_to_upper(char *str)
+using std::cout;
+using std::endl;
+using std::strlen;
+using std::toupper;
+
+void    string_to_upper(char    *str)
 {
     size_t  str_len;
 
-    str_len = std::strlen(str);
+    str_len = strlen(str);
     for(size_t i = 0; i < str_len; i++)
-        str[i] = std::toupper(str[i]);
+        str[i] = toupper(str[i]);
 }
 
 int main(int ac, char *av[])
 {
     if (ac == 1)
-        std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
+        cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
     else
     {
         for (int i = 1; i < ac; i++)
         {
             string_to_upper(av[i]);
-            std::cout << av[i];
+            cout << av[i];
         }
     }
-    std::cout << std::endl;
+    cout << endl;
     return (0);
 } 

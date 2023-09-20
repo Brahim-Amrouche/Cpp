@@ -19,20 +19,21 @@ int main()
 
     while (true)
     {
-        std::cout << "please enter a command:";
-        std::cin >> input;
+        cout << "please enter a command:";
+        cin >> input;
         if ( input == "ADD")
             phone_book.add_contact();
         else if (input == "SEARCH")
         {
             int i;
             phone_book.display_contacts();
-            std::cout << "enter the index of entry to search:";
-            std::cin >> i;
-            if (std::cin.fail())
+            cin.ignore();
+            cout << "enter the index of entry to search:";
+            cin >> i;
+            if (cin.fail())
             {
-                std::cout << "wrong input" << std::endl;
-                std::cin.clear();
+                cout << "wrong input" << endl;
+                cin.clear();
             }
             else
                 phone_book.display_contacts(i);
