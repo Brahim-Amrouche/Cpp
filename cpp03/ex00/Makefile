@@ -2,7 +2,7 @@ NAME = ClapTrap
 
 FLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRCS = main.c ClapTrap.cpp
+SRCS = main.cpp ClapTrap.cpp
 
 CC = c++
 

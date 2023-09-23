@@ -6,11 +6,12 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 08:49:00 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/17 16:28:15 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/09/23 16:53:07 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
+
 #include "iostream"
 #include "string"
 
@@ -22,9 +23,9 @@ class ClapTrap
 {
     protected:
         string name;
-        int    hit_points = 10;
-        int    energy = 10;
-        int    damage = 0;
+        int    hit_points;
+        int    energy;
+        int    damage;
     public:
         ClapTrap();
         ClapTrap(string new_name);

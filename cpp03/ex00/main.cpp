@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/17 11:34:30 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/23 16:59:13 by bamrouch         ###   ########.fr       */
+/*   Created: 2023/09/23 13:20:03 by bamrouch          #+#    #+#             */
+/*   Updated: 2023/09/23 16:35:49 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
-
 #include "ClapTrap.hpp"
 
-class ScavTrap : public ClapTrap
+int main()
 {
-    public:
-        ScavTrap();
-        ScavTrap(string new_name);
-        ScavTrap(const ScavTrap &cpy_scav);
-        ScavTrap &operator=(const ScavTrap &eq_scav);
-        virtual void attack(const string &target);
-        void    guardGate(void);
-        ~ScavTrap();
-};
+    ClapTrap    default_clapi("bomba");
+    ClapTrap    clapi("real clapi");
+
+    default_clapi.attack("real clapi");
+    default_clapi.beRepaired(10);
+    default_clapi.takeDamage(10);
+    default_clapi.takeDamage(100);
+    
+    size_t i = -1;
+    while (++i < 10)
+    {
+        clapi.attack("someone");
+    }
+    clapi.attack("different");
+    clapi.beRepaired(10);
+}
+

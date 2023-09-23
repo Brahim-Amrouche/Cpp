@@ -6,7 +6,7 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 12:13:57 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/17 16:20:34 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/09/23 18:15:25 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ ScavTrap::ScavTrap():ClapTrap("",100, 50, 20)
     cout << "ScavTrap Default constructor" << endl;
 };
 
-ScavTrap::ScavTrap(string name):ClapTrap(name, 100, 50, 30)
+ScavTrap::ScavTrap(string new_name):ClapTrap(new_name , 100, 50, 30)
 {
     cout << "ScavTrap String constructor" << endl;
 };
@@ -36,20 +36,20 @@ ScavTrap &ScavTrap::operator=(const ScavTrap &eq_scav)
 
 void    ScavTrap::attack(const string &target)
 {
-    cout << "Scavtrap" << name;
+    cout << "Scavtrap " << name;
     if (energy <= 0 || hit_points <= 0)
     {
-        cout << "is unable to attack" << endl;
+        cout << " is unable to attack" << endl;
         return;
     }
-    cout << "attacks" << target 
-        << ", causing" << damage << "points of damage!" << endl;
+    cout << " attacks " << target 
+        << ", causing " << damage << " points of damage!" << endl;
     --energy;
 }
 
 void    ScavTrap::guardGate()
 {
-    cout << "ScavTrap" << name << "is in Gate keeper mode" << endl;
+    cout << "ScavTrap " << name << " is in Gate keeper mode" << endl;
 }
 
 ScavTrap::~ScavTrap()

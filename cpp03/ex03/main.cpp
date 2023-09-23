@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   FragTrap.hpp                                       :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/17 16:25:36 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/17 17:36:49 by bamrouch         ###   ########.fr       */
+/*   Created: 2023/09/23 17:31:43 by bamrouch          #+#    #+#             */
+/*   Updated: 2023/09/23 18:12:41 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#include "DiamondTrap.hpp"
 
-#include "ClapTrap.hpp"
-
-class FragTrap : public virtual ClapTrap
+int main()
 {
-    public:
-        FragTrap();
-        FragTrap(string new_name);
-        FragTrap(const FragTrap &cpy_frag);
-        FragTrap &operator=(const FragTrap &cpy_frag);
-        void     highFivesGuys(void);
-        ~FragTrap();
-};
+    DiamondTrap three("three");
+    
+    three.attack("clampi");
+    three.beRepaired(10);
+    three.takeDamage(10);
+    three.guardGate();
+    three.highFivesGuys();
+    three.whoAmI();
+
+    size_t i = 1;
+    while (++i< 50)
+    {
+        three.attack("rusty");
+    }
+    three.attack("dusty");
+    three.beRepaired(4);
+}

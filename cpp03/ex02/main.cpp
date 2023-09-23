@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/17 11:34:30 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/23 16:59:13 by bamrouch         ###   ########.fr       */
+/*   Created: 2023/09/23 17:15:04 by bamrouch          #+#    #+#             */
+/*   Updated: 2023/09/23 17:24:17 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#include "FragTrap.hpp"
 
-#include "ClapTrap.hpp"
-
-class ScavTrap : public ClapTrap
+int main()
 {
-    public:
-        ScavTrap();
-        ScavTrap(string new_name);
-        ScavTrap(const ScavTrap &cpy_scav);
-        ScavTrap &operator=(const ScavTrap &eq_scav);
-        virtual void attack(const string &target);
-        void    guardGate(void);
-        ~ScavTrap();
-};
+    FragTrap two("two");
+
+    two.attack("clampi");
+    two.beRepaired(10);
+    two.takeDamage(10);
+    two.highFivesGuys();
+
+    size_t i = 1;
+    while (++i < 100)
+    {
+        two.attack("rusty");
+    }
+    two.attack("dusty");
+    two.beRepaired(5);
+}

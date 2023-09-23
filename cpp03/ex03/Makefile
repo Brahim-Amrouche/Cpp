@@ -1,8 +1,8 @@
-NAME = ClapTrap
+NAME = DiamondTrap
 
-FLAGS = -Wall -Wextra -Werror -std=c++98
+FLAGS = -Wall -Wextra -Werror -Wno-shadow -std=c++98
 
-SRCS = main.c ClapTrap.cpp FragTrap.cpp
+SRCS = main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp DiamondTrap.cpp 
 
 CC = c++
 
