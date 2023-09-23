@@ -6,7 +6,7 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 06:48:04 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/20 19:23:28 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/09/23 11:58:02 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,32 +101,38 @@ bool    Fixed::operator<=(const Fixed &other) const
 
 Fixed    Fixed::operator+(const Fixed &other)
 {
-    this->bits += other.bits;
-    return (*this);
+    Fixed result;
+    
+    result.bits = bits + other.bits;
+    return (result);
 }
 
 Fixed    Fixed::operator-(const Fixed &other)
 {
-    this->bits -= other.bits;
-    return (*this);
+    Fixed result;
+    
+    result.bits = bits - other.bits;
+    return (result);
 }
 
 Fixed    Fixed::operator*(const Fixed &other)
 {
+    Fixed   result;
     long    my_bits = this->bits;
     long    other_bits = other.bits;
 
-    this->bits = (my_bits * other_bits) >> fract;
-    return (*this);
+    result.bits = (my_bits * other_bits) >> fract;
+    return (result);
 }
 
 Fixed    Fixed::operator/(const Fixed &other)
 {
+    Fixed   result;
     long    my_bits = this->bits << fract;
     long    other_bits = other.bits;
 
-    this->bits = (my_bits / other_bits);
-    return (*this);
+    result.bits = (my_bits / other_bits);
+    return (result);
 }
 
 Fixed    &Fixed::operator++()

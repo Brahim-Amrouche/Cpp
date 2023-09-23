@@ -6,7 +6,7 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 19:27:25 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/20 19:40:41 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/09/23 11:55:44 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 int main()
 {
-    Point a(-1.0f, 1.0f);
-    Point b(3.0f, 3.0f);
-    Point c(5.0f, 2.0f);
-    Point d(1.5f, 2.2f);
+    Point a(-10.0f, 0.0f);
+    Point b(10.0f, 0.0f);
+    Point c(0.0f, 10.0f);
+    Point d(0.0f, -10.2f);
 
-    cout << Fixed(-1.01f) << endl;
+    cout << bsp(a, b , c, d) << endl;
     // cout << "the result is ===========" << bsp(a, b, c, d) << endl;
 }

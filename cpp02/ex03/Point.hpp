@@ -6,7 +6,7 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 14:18:18 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/20 19:27:47 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/09/23 11:54:23 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ class Point
         ~Point();
 };
 
-bool bsp( Point const a, Point const b, Point const c, Point const point);
+bool bsp(Point &a, Point &b, Point &c, Point &point);
 
 #endif
