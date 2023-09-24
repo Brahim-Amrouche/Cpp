@@ -6,7 +6,7 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 15:11:35 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/18 15:44:44 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/09/24 12:16:36 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@ WrongAnimal &WrongAnimal::operator=(const WrongAnimal &eq_animal)
     return (*this);
 }
 
-string    WrongAnimal::getType(void)
+string    WrongAnimal::getType(void) const
 {
     return type;
 }
 
-void   WrongAnimal::makeSound()
+void   WrongAnimal::makeSound() const
 {
     cout << "evolving quietly..." << endl;
 }

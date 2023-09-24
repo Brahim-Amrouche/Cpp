@@ -6,7 +6,7 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 13:04:16 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/18 20:14:40 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/09/24 12:32:34 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ Cat &Cat::operator=(const Cat &eq_cat)
     return (*this);
 };
 
-void    Cat::makeSound(void)
+void    Cat::makeSound(void) const
 {
     cout << "Meaow..." << endl;
 }

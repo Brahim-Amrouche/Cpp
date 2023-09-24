@@ -6,7 +6,7 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 14:34:53 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/18 15:35:16 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/09/24 13:05:11 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ class WrongAnimal
         WrongAnimal(string new_type);
         WrongAnimal(const WrongAnimal &cpy_animal);
         WrongAnimal &operator=(const WrongAnimal &eq_animal);
-        string      getType(void);
-        virtual void        makeSound(void);
-        ~WrongAnimal();
+        string      getType(void) const;
+        virtual void        makeSound(void) const;
+        virtual ~WrongAnimal();
 };

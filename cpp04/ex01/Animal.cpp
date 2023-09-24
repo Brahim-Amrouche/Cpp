@@ -6,13 +6,13 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 12:44:17 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/18 15:26:41 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/09/24 12:53:48 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Animal.hpp"
 
-Animal::Animal()
+Animal::Animal():type("evolving")
 {
     cout << "an animal is Default constructing" << endl;
 };
@@ -33,12 +33,12 @@ Animal  &Animal::operator=(const Animal &eq_animal)
     return(*this);
 }
 
-string  Animal::getType(void)
+string  Animal::getType(void) const
 {
     return type;
 };
 
-void    Animal::makeSound()
+void    Animal::makeSound() const
 {
     cout << ".../*gibrish*/" << endl;
 }

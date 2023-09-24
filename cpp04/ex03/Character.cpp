@@ -6,13 +6,21 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 12:23:49 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/19 15:56:41 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/09/24 16:22:41 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Character.hpp"
 
-Character::Character(string const &new_name):name(new_name)
+Character::Character():name(""), throw_index(0) , floor_materias(NULL)
+{
+    size_t i = -1;
+
+    while (++i < 4)
+        inventory[i] = NULL;
+}
+
+Character::Character(string const &new_name):name(new_name), throw_index(0), floor_materias(NULL)
 {
     size_t i = -1;
 

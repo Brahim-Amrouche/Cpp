@@ -6,7 +6,7 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 15:44:56 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/18 17:08:52 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/09/24 12:21:30 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,11 @@ WrongCat    &WrongCat::operator=(const WrongCat &eq_wrong)
 {
     WrongAnimal::operator=(eq_wrong);
     return (*this);
+}
+
+void    WrongCat::makeSound(void) const
+{
+    cout << "pzzzzzzz...." << endl;
 }
 
 WrongCat::~WrongCat()

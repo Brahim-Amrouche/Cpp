@@ -6,14 +6,14 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 15:21:55 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/19 16:07:45 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/09/24 16:15:58 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MateriaSource.hpp"
 
 
-MateriaSource::MateriaSource()
+MateriaSource::MateriaSource():insert_index(0)
 {
     size_t  i = -1;
     while (++i < 4)
@@ -63,15 +63,15 @@ void    MateriaSource::learnMateria(AMateria *m)
 
 AMateria    *MateriaSource::createMateria(string const &type)
 {
-    size_t  i = -1;
+    int  i = -1;
 
     while (++i < insert_index)
-        if (materias[i]->getType() == type)
-            return materias[insert_index]->clone();
+        if (materias[i] && materias[i]->getType() == type)
+            return materias[i]->clone();
     return NULL;
 }
 
-MateriaSource::MateriaSource()
+MateriaSource::~MateriaSource()
 {
     size_t i = -1;
 

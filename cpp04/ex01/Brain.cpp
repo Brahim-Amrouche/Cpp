@@ -6,7 +6,7 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 17:50:00 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/18 19:02:06 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/09/24 12:59:47 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +33,21 @@ Brain &Brain::operator=(const Brain &eq_brain)
     size_t i = -1;
     while (++i < 100)
         ideas[i] = eq_brain.ideas[i];
+    return (*this);
 }
 
 string      Brain::get_idea(size_t i)
 {
-    if (i > 100)
+    if (i == 0 || i > 100)
         return "";
-    return ideas[i];
+    return ideas[i - 1];
 }
 
 void        Brain::set_idea(string idea, size_t i)
 {
-    if (i > 100)
+    if (i == 0 || i > 100)
         return ;
-    ideas[i] = idea;
+    ideas[i - 1] = idea;
 }
 
 Brain::~Brain()

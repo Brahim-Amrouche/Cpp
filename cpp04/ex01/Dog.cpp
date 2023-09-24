@@ -6,7 +6,7 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 13:14:34 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/18 20:23:44 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/09/24 12:32:58 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ Dog &Dog::operator=(const Dog &eq_dog)
     return (*this);
 }
 
-void    Dog::makeSound(void)
+void    Dog::makeSound(void) const
 {
     cout << "Woof..." << endl;
 }

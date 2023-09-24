@@ -6,7 +6,7 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 11:47:06 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/19 12:52:07 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/09/24 16:18:52 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ Ice *Ice::clone() const
     return new_ice;
 }
 
-void    use(ICharacter &target)
+void  Ice::use(ICharacter &target)
 {
     cout << "* shoots an ice bolt at " << target.getName() << " *" << endl;
 };

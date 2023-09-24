@@ -2,7 +2,7 @@ NAME = Animal
 
 FLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRCS = main.c Animal.cpp Cat.cpp Dog.cpp WrongAnimal.cpp WrongCat.cpp
+SRCS = main.cpp Animal.cpp Cat.cpp Dog.cpp WrongAnimal.cpp WrongCat.cpp
 
 CC = c++
 
