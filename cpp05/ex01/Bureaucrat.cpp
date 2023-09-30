@@ -6,7 +6,7 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 11:59:17 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/26 18:28:50 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/09/29 18:18:53 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,11 @@ void    Bureaucrat::signForm(Form &form) const
 {
     try{
         form.beSigned(*this);
-        cout << *this << " signed " << form << endl;
+        cout << this->getName() << " signed " << form.getName() << endl;
     }
     catch (const Form::GradeTooLowException &e)
     {
-        cout << *this << " couldn't sign " << form << " because " << e.what() << endl;
+        cout << this->getName() << " couldn't sign " << form.getName() << " because " << e.what() << endl;
     }
 }
 

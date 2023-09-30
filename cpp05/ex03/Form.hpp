@@ -57,7 +57,7 @@ class AForm
         int     getExecGrade() const;
         void    setSign(bool new_sign);
         void    beSigned(const Bureaucrat &bureau);
-        virtual void execute(const Bureaucrat &bureau);
+        void    execute(const Bureaucrat &bureau);
         ~AForm();
 };
 
