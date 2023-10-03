@@ -2,7 +2,7 @@ NAME = convert
 
 FLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRCS = main.cpp Serializer.cpp Data.cpp
+SRCS = main.cpp Types.cpp main.cpp
 
 CC = c++
 
