@@ -6,7 +6,7 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 16:18:28 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/10/27 16:23:44 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/10/27 18:47:47 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ using std::getline;
 using std::left;
 using std::right;
 using std::setw;
+using std::setfill;
 
 class Contact {
     private :

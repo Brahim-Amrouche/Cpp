@@ -6,7 +6,7 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 14:45:32 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/10/27 16:29:23 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/10/27 18:59:06 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,27 @@
 Contact Contact::fill_contact_info()
 {
     Contact new_contact;
-
-    cout << "enter the contact's first name:";
-    getline(cin, new_contact.first_name) ;
-    cout << "enter the contact's last name:";
-    getline(cin, new_contact.last_name);
-    cout << "enter the contact's phone number:";
-    getline(cin, new_contact.phone_number);
-    cout << "enter the contact's darkest secret:";
-    getline(cin, new_contact.darkest_secret);
+    
+    if (!cin.eof())
+    {
+        cout << "enter the contact's first name:";
+        getline(cin, new_contact.first_name);
+    }
+    if (!cin.eof())
+    {
+        cout << "enter the contact's last name:";
+        getline(cin, new_contact.last_name);
+    }
+    if (!cin.eof())
+    {
+        cout << "enter the contact's phone number:";
+        getline(cin, new_contact.phone_number);
+    }
+    if (!cin.eof())
+    {
+        cout << "enter the contact's darkest secret:";
+        getline(cin, new_contact.darkest_secret);
+    }
     return new_contact;
 }
 
@@ -49,8 +61,13 @@ Contact &Contact::operator=(const Contact &eq_contact)
 void Contact::print_contact(bool horizontal, int index)
 {
     if (horizontal)
-        cout << left << setw(3) << index << " | " << first_name << " | " << last_name 
-            << " | " << phone_number << " | " << darkest_secret << endl;
+    {
+        cout << right << setfill(' ') << setw(10) << index<< "|";
+        cout << right << setfill(' ') << setw(10) << first_name << "|";
+        cout << right << setfill(' ') << setw(10) << last_name << "|"; 
+        cout << right << setfill(' ') << setw(10) << phone_number << "|";
+        cout << right << setfill(' ') << setw(10) << darkest_secret << endl;
+    }
     else
     {
         cout << "-Index: " << index << endl;
