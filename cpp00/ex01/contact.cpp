@@ -6,51 +6,97 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 14:45:32 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/06 19:27:37 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/10/27 16:29:23 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "contact.hpp"
 
-Contact::Contact():contact_data(){};
-
-Contact::Contact(const Contact_data &contact):contact_data(contact){};
-
-Contact::~Contact(){}
-
-Contact &Contact::operator=(const Contact &x)
+Contact Contact::fill_contact_info()
 {
-    this->contact_data = x.contact_data;
+    Contact new_contact;
+
+    cout << "enter the contact's first name:";
+    getline(cin, new_contact.first_name) ;
+    cout << "enter the contact's last name:";
+    getline(cin, new_contact.last_name);
+    cout << "enter the contact's phone number:";
+    getline(cin, new_contact.phone_number);
+    cout << "enter the contact's darkest secret:";
+    getline(cin, new_contact.darkest_secret);
+    return new_contact;
+}
+
+Contact::Contact():first_name(""), last_name(""), phone_number(""), darkest_secret("")
+{};
+
+Contact::Contact(const Contact &cpy_contact)
+{
+    this->operator=(cpy_contact);
+};
+
+
+Contact &Contact::operator=(const Contact &eq_contact)
+{
+    first_name = eq_contact.first_name;
+    last_name = eq_contact.last_name;
+    phone_number = eq_contact.phone_number;
+    darkest_secret = eq_contact.darkest_secret;    
     return *this;
 }
 
-Contact_data Contact::fill_contact_info()
-{
-    Contact_data c_data;
-    
-    cin.ignore();
-    cout << "enter the contact's first name: ";
-    getline(cin, c_data.first_name) ;
-    cout << "enter the contact's last name: ";
-    getline(cin, c_data.last_name);
-    cout << "enter the contact's phone number: ";
-    getline(cin, c_data.phone_number);
-    cout << "enter the contact's darkest secret: ";
-    getline(cin, c_data.darkest_secret);
-    return c_data;
-}
 
 void Contact::print_contact(bool horizontal, int index)
 {
     if (horizontal)
-        cout << index << " | " <<contact_data.first_name << " | " << contact_data.last_name 
-            << " | " << contact_data.phone_number << " | " << contact_data.darkest_secret << endl;
+        cout << left << setw(3) << index << " | " << first_name << " | " << last_name 
+            << " | " << phone_number << " | " << darkest_secret << endl;
     else
     {
         cout << "-Index: " << index << endl;
-        cout << "-Contact first name: " << contact_data.first_name << endl;
-        cout << "-Contact last name: " << contact_data.last_name << endl;
-        cout << "-Contact phone number: " << contact_data.phone_number << endl;
-        cout << "-Contact darkest secret: " << contact_data.darkest_secret << endl; 
+        cout << "-Contact first name: " << first_name << endl;
+        cout << "-Contact last name: " << last_name << endl;
+        cout << "-Contact phone number: " << phone_number << endl;
+        cout << "-Contact darkest secret: " << darkest_secret << endl; 
     }
 }
+
+string Contact::get_firstname()
+{
+    return first_name;
+}
+
+string Contact::get_lastname()
+{
+    return last_name;
+}
+
+string Contact::get_phonenumber()
+{
+    return phone_number;
+}
+
+string Contact::get_darkestsecret()
+{
+    return darkest_secret;
+}
+
+void      Contact::set_firstname(const string &new_firstname)
+{
+    first_name = new_firstname;
+};
+void      Contact::set_lastname(const string &new_lastname)
+{
+    last_name = new_lastname;
+};
+void      Contact::set_phonenumber(const string &new_phonenumber)
+{
+    phone_number = new_phonenumber;
+};
+
+void      Contact::set_darkestsecret(const string &new_darkestsecret)
+{
+    darkest_secret = new_darkestsecret;
+};
+
+Contact::~Contact(){}

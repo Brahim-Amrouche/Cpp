@@ -6,60 +6,48 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 14:42:50 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/06 19:22:04 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/10/27 15:14:37 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "phonebook.hpp"
 
 PhoneBook::PhoneBook():size(0)
-{
-    
-}
-
-PhoneBook::~PhoneBook()
-{
-
-}
+{}
 
 Contact *PhoneBook::get_contacts() const
 {
     return ((Contact *) contacts_list);
 }
 
-
-PhoneBook &PhoneBook::operator=(const PhoneBook &x)
+PhoneBook &PhoneBook::operator=(const PhoneBook &eq_phonebook)
 {
-    int i = -1;
+    size_t i = -1;
 
-    while (++i < 8)
-        contacts_list[i] = x.contacts_list[i];
+    size = eq_phonebook.size;
+    while (++i < size)
+        contacts_list[i] = eq_phonebook.contacts_list[i];
     return *this;
 }
 
-PhoneBook::PhoneBook(const PhoneBook &x)
+PhoneBook::PhoneBook(const PhoneBook &cpy_phonebook)
 {
-    this->operator=(x);
+    this->operator=(cpy_phonebook);
 }
 
 void PhoneBook::add_contact()
 {
-    Contact new_contact;
-
-    new_contact = Contact(Contact::fill_contact_info());
+    Contact new_contact(Contact::fill_contact_info());
     contacts_list[size % 8] = new_contact;
     size++;
 }
 
 void PhoneBook::display_contacts()
 {
-    size_t  i = 0;
+    size_t  i = -1;
 
-    while (i < size)
-    {
+    while ((size < 8 && ++i < size) || (size >= 8 && ++i < 8))
         contacts_list[i].print_contact(true, i + 1);
-        i++;
-    }
 }
 
 void PhoneBook::display_contacts(int i)
@@ -69,3 +57,6 @@ void PhoneBook::display_contacts(int i)
     else
         contacts_list[i - 1].print_contact(false, i);
 }
+
+PhoneBook::~PhoneBook()
+{}

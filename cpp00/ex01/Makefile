@@ -2,7 +2,7 @@ NAME = phonebook
 
 FLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRCS = phonebook.cpp contact.cpp main.cpp
+SRCS = phonebook.cpp contact.cpp main.cpp 
 
 CC = c++
 
