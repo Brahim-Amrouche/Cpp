@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sed.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: bamrouch <bamrouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 01:38:13 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/20 12:20:34 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/10/28 21:24:05 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,11 @@ bool    Sed::replace_in_file(string s1, string s2)
         return false;
     while (getline(infile, line))
     {
-        replace(s1, s2);
-        outfile << line << endl;
+        if (!s1.empty())
+            replace(s1, s2);
+        outfile << line;
+        if (!infile.eof())
+            outfile << endl;
     }
     return true;
 }

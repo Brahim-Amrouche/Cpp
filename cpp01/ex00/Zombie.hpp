@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Zombie.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: bamrouch <bamrouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 23:22:56 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/20 11:49:47 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/10/28 20:41:18 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ class Zombie
     private :
         string name;
     public :
-        Zombie(void):name(""){};
+        Zombie(void);
         Zombie(string name);
         Zombie(const Zombie *zombie);
         Zombie &operator=(const Zombie *zombie);

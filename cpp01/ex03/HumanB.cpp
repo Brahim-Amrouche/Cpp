@@ -3,16 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   HumanB.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: bamrouch <bamrouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 22:23:34 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/20 11:59:46 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/10/28 20:56:46 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "HumanB.hpp"
 
-HumanB::HumanB(string new_name): name(new_name)
+HumanB::HumanB():name(""), weapon(NULL)
+{};
+
+HumanB::HumanB(string new_name): name(new_name), weapon(NULL)
 {};
 
 HumanB::HumanB(const HumanB &cpy_human):name(cpy_human.name), weapon(cpy_human.weapon)

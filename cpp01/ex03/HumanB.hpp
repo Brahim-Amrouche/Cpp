@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   HumanB.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: bamrouch <bamrouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 00:51:53 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/20 11:59:49 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/10/28 20:56:56 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ class HumanB
         string name;
         Weapon      *weapon;
     public:
-        HumanB(): name(""), weapon(NULL){};
+        HumanB();
         HumanB(string new_name);
         HumanB(const HumanB &cpy_human);
         HumanB  &operator=(const HumanB &eq_human);

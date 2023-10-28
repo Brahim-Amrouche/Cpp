@@ -3,14 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   Zombie.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: bamrouch <bamrouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 14:20:39 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/08 15:36:40 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/10/28 20:41:41 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
+
+Zombie::Zombie():name("")
+{};
 
 Zombie::Zombie(string z_name)
 {
