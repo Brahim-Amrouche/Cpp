@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: bamrouch <bamrouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 18:07:41 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/10/27 19:01:26 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/10/28 14:28:21 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@ void    search_contacts(PhoneBook &phone_book)
 {
     string temp;
     int i = 0;
+    if (!phone_book.get_size())
+    {
+        cout << "There is no Contact to search" << endl;;
+        return ;
+    }
     phone_book.display_contacts();
     cout << "enter the index of entry to search:";
     getline(cin, temp);

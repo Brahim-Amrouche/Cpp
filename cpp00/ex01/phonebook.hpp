@@ -6,7 +6,7 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 14:42:25 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/10/27 14:23:05 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/10/28 14:15:41 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ class PhoneBook {
         PhoneBook(const PhoneBook &cpy_phonebook);
         PhoneBook &operator=(const PhoneBook &eq_phonebook);
         Contact *get_contacts() const;
+        size_t  get_size() const;
         void add_contact();
         void display_contacts();
         void display_contacts(int i);

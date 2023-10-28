@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   contact.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: bamrouch <bamrouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 14:45:32 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/10/27 18:59:06 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/10/28 14:31:24 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,16 +57,26 @@ Contact &Contact::operator=(const Contact &eq_contact)
     return *this;
 }
 
+string  trim_input(string &input)
+{
+    if(input.size() > 10)
+    {
+        string temp = input.substr(0, 9);
+        temp.push_back('.');
+        return temp;
+    }
+    return input;
+}
 
 void Contact::print_contact(bool horizontal, int index)
 {
     if (horizontal)
     {
-        cout << right << setfill(' ') << setw(10) << index<< "|";
-        cout << right << setfill(' ') << setw(10) << first_name << "|";
-        cout << right << setfill(' ') << setw(10) << last_name << "|"; 
-        cout << right << setfill(' ') << setw(10) << phone_number << "|";
-        cout << right << setfill(' ') << setw(10) << darkest_secret << endl;
+        cout << right << setfill(' ') << setw(10) << index << "|";
+        cout << right << setfill(' ') << setw(10) << trim_input(first_name) << "|";
+        cout << right << setfill(' ') << setw(10) << trim_input(last_name) << "|"; 
+        cout << right << setfill(' ') << setw(10) << trim_input(phone_number) << "|";
+        cout << right << setfill(' ') << setw(10) << trim_input(darkest_secret) << endl;
     }
     else
     {

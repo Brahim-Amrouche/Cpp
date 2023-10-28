@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   phonebook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: bamrouch <bamrouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 14:42:50 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/10/27 15:14:37 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/10/28 14:22:02 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@ PhoneBook::PhoneBook():size(0)
 Contact *PhoneBook::get_contacts() const
 {
     return ((Contact *) contacts_list);
+}
+
+size_t PhoneBook::get_size() const
+{
+    return size;
 }
 
 PhoneBook &PhoneBook::operator=(const PhoneBook &eq_phonebook)
