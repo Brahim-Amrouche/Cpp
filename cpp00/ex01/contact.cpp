@@ -6,7 +6,7 @@
 /*   By: bamrouch <bamrouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 14:45:32 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/10/28 14:31:24 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/10/28 19:36:23 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,22 @@ Contact Contact::fill_contact_info()
 {
     Contact new_contact;
     
-    if (!cin.eof())
+    while (!cin.eof() &&  new_contact.first_name.empty())
     {
         cout << "enter the contact's first name:";
         getline(cin, new_contact.first_name);
     }
-    if (!cin.eof())
+    while (!cin.eof() && new_contact.last_name.empty())
     {
         cout << "enter the contact's last name:";
         getline(cin, new_contact.last_name);
     }
-    if (!cin.eof())
+    while (!cin.eof() && new_contact.phone_number.empty())
     {
         cout << "enter the contact's phone number:";
         getline(cin, new_contact.phone_number);
     }
-    if (!cin.eof())
+    while (!cin.eof() && new_contact.darkest_secret.empty())
     {
         cout << "enter the contact's darkest secret:";
         getline(cin, new_contact.darkest_secret);
