@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bamrouch <bamrouch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 18:07:41 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/10/28 14:28:21 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/10/30 15:16:53 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void    search_contacts(PhoneBook &phone_book)
     int i = 0;
     if (!phone_book.get_size())
     {
-        cout << "There is no Contact to search" << endl;;
+        cout << "There is no Contact to Search" << endl;;
         return ;
     }
     phone_book.display_contacts();
