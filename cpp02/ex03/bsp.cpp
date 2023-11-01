@@ -6,53 +6,48 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 16:51:29 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/23 11:52:37 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/11/01 16:02:29 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Point.hpp"
 
+Fixed vectorial_product(Point v1, Point v2)
+{
+    return ((v1.get_x() * v2.get_y()) - (v2.get_x() * v1.get_y()));
+}
+
+Point calculate_vector(Point &a , Point &b)
+{
+    Fixed x = b.get_x() - a.get_x();
+    Fixed y = b.get_y() - a.get_y();
+    Point vector(x.toFloat(), y.toFloat());
+    return vector;
+}
+
+bool scalar_sign_differs(Fixed origin, Fixed copy)
+{
+    bool origin_positive = origin >= Fixed(0.0f);
+    bool copy_positive = copy >= Fixed(0.0f);
+    
+    return (origin_positive != copy_positive);
+}
+
 bool bsp(Point &a, Point &b, Point &c, Point &point)
 {
-    Fixed A[2], AB[2], AP[2];
-    Fixed B[2], BC[2], BP[2];
-    Fixed C[2], CA[2], CP[2];
-    Fixed P[2];
-    Fixed alpha, beta, gamma, zero;
-
-    a.get_cords(A);
-    b.get_cords(B);
-    c.get_cords(C);
-    point.get_cords(P);
-    
-    cout << "multiplication: " << A[0] * B[0] << endl;
-    AB[0] = B[0] - A[0];
-    AB[1] = B[1] - A[1];
-
-    BC[0] = C[0] - B[0];
-    BC[1] = C[1] - B[1];
-
-    CA[0] = A[0] - C[0];
-    CA[1] = A[1] - C[1];
-
-    AP[0] = P[0] - A[0];
-    AP[1] = P[1] - A[1];
-
-    BP[0] = P[0] - B[0];
-    BP[1] = P[1] - B[1];
-
-    CP[0] = P[0] - C[0];
-    CP[1] = P[1] - C[1];
-
-    alpha = AB[0] * AP[0] + AB[1] * AP[1];
-    beta = BC [0] * BP[0] + BC[1] * BP[1];
-    gamma = CA[0] * CP[0] + CA[1] * CP[1];
-    
-    zero = Fixed(0.0f);
-    if ((alpha >= zero && beta >= zero && gamma >= zero) ||
-        (alpha <= zero && beta <= zero && gamma <= zero))
-        return (1);
-    return (0);
+    Point AB(calculate_vector(a, b)), AC(calculate_vector(a, c)), AP(calculate_vector(a, point));
+    Fixed ABAC(vectorial_product(AB,AC)), ABAP(vectorial_product(AB,AC));
+    if (scalar_sign_differs(ABAC, ABAP))
+        return false;
+    Point BC(calculate_vector(b, c)), BA(calculate_vector(b, a)) ,BP(calculate_vector(b, point));
+    Fixed BCBA(vectorial_product(BC, BA)), BCBP(vectorial_product(BC,BP));
+    if (scalar_sign_differs(BCBA, BCBP))
+        return false;
+    Point CA(calculate_vector(c, a)),CB(calculate_vector(c, b)) , CP(calculate_vector(c, point));
+    Fixed CACB(vectorial_product(CA,CB)) , CACP(vectorial_product(CA, CP));
+    if (scalar_sign_differs(CACB, CACP))
+        return false;
+    return true;
 }
 
 

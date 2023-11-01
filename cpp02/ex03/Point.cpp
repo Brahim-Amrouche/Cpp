@@ -6,7 +6,7 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 14:10:00 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/22 18:58:03 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/11/01 15:24:36 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,16 @@ Point &Point::operator=(const Point &eq_point)
     delete this;
     return (*new_point);
 };
+
+Fixed const Point::get_x() const
+{
+    return x;
+}
+
+Fixed const Point::get_y() const
+{
+    return y;
+}
 
 void   Point::get_cords(Fixed (&cords)[2]) const
 {
