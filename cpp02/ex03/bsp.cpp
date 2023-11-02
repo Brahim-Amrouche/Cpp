@@ -6,15 +6,16 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 16:51:29 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/11/01 16:02:29 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/11/02 15:21:13 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Point.hpp"
 
-Fixed vectorial_product(Point v1, Point v2)
+Fixed vectorial_product(Point &v1, Point &v2)
 {
-    return ((v1.get_x() * v2.get_y()) - (v2.get_x() * v1.get_y()));
+    Fixed res = (v1.get_x() * v2.get_y()) - (v2.get_x() * v1.get_y());
+    return (res);
 }
 
 Point calculate_vector(Point &a , Point &b)
@@ -25,12 +26,16 @@ Point calculate_vector(Point &a , Point &b)
     return vector;
 }
 
-bool scalar_sign_differs(Fixed origin, Fixed copy)
+bool scalar_sign_differs(Fixed &origin, Fixed &copy)
 {
-    bool origin_positive = origin >= Fixed(0.0f);
-    bool copy_positive = copy >= Fixed(0.0f);
+    Fixed zero = Fixed(0.0f);
+
+    bool origin_positive = origin > zero;
+    bool copy_positive = copy > zero;
+    bool origin_negative = origin < zero;
+    bool copy_negative = origin < zero;
     
-    return (origin_positive != copy_positive);
+    return ((origin_positive && copy_negative) || (origin_negative && copy_positive));
 }
 
 bool bsp(Point &a, Point &b, Point &c, Point &point)

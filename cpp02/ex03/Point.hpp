@@ -6,7 +6,7 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 14:18:18 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/11/01 15:24:05 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/11/02 14:31:59 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ class Point
         Point &operator=(const Point &eq_point);
         Fixed const get_x() const;
         Fixed const get_y() const;
-        void    get_cords(Fixed (&cords)[2]) const;
-        void    set_cords(float new_x, float new_y);
         ~Point();
 };
 

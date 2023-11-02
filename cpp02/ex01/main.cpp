@@ -6,7 +6,7 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 18:10:47 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/20 19:04:11 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/11/02 15:22:44 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,9 @@ int main()
     std::cout << "b is " << b.toInt() << " as integer" << std::endl;
     std::cout << "c is " << c.toInt() << " as integer" << std::endl;
     std::cout << "d is " << d.toInt() << " as integer" << std::endl;
+    std::cout << "a is " << a.toFloat() << " as Float" << std::endl;
+    std::cout << "b is " << b.toFloat() << " as Float" << std::endl;
+    std::cout << "c is " << c.toFloat() << " as Float" << std::endl;
+    std::cout << "d is " << d.toFloat() << " as Float" << std::endl;
 }
 
