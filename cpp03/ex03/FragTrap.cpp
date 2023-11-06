@@ -6,7 +6,7 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 16:24:17 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/23 18:15:16 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/11/06 18:23:36 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,13 @@ FragTrap &FragTrap::operator=(const FragTrap &eq_frag)
 
 void    FragTrap::highFivesGuys(void)
 {
+    cout << "FragTrap " << name;
+    if (energy <= 0 || hit_points <= 0)
+    {
+        cout << " is unable to high five" << endl;
+        return;
+    }
+    --energy;
     cout << "FragTrap " << name << " Gives You a Positive High Five" << endl;
 }
 

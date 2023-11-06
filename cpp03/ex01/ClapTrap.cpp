@@ -6,18 +6,18 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 09:11:42 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/23 16:49:43 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/11/06 17:22:39 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
-ClapTrap::ClapTrap():name(""),hit_points(10),energy(10),damage(10)
+ClapTrap::ClapTrap():name(""),hit_points(10),energy(10),damage(0)
 {
     cout << "ClapTrap Default Constructor Called" << endl;
 };
 
-ClapTrap::ClapTrap(string new_name):name(new_name),hit_points(10),energy(10),damage(10)
+ClapTrap::ClapTrap(string new_name):name(new_name),hit_points(10),energy(10),damage(0)
 {
     cout << "ClapTrap String Constructor Called" << endl;
 };
@@ -61,7 +61,13 @@ void    ClapTrap::attack(const string &target)
 
 void    ClapTrap::takeDamage(unsigned int amount)
 {
-    cout << "ClapTrap " << name << " takes " << amount << " points of damage !" << endl;
+    cout << "ClapTrap " << name;
+    if (energy <= 0 || hit_points <= 0)
+    {
+        cout << " is already down have mercy" << endl;
+        return ;
+    }
+    cout << " takes " << amount << " points of damage !" << endl;
     if (amount > (unsigned int) hit_points)
         hit_points = 0;
     else

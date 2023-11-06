@@ -6,7 +6,7 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 12:13:57 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/23 18:15:25 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/11/06 17:21:51 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ ScavTrap::ScavTrap():ClapTrap("",100, 50, 20)
     cout << "ScavTrap Default constructor" << endl;
 };
 
-ScavTrap::ScavTrap(string new_name):ClapTrap(new_name , 100, 50, 30)
+ScavTrap::ScavTrap(string new_name):ClapTrap(new_name , 100, 50, 20)
 {
     cout << "ScavTrap String constructor" << endl;
 };
@@ -49,6 +49,13 @@ void    ScavTrap::attack(const string &target)
 
 void    ScavTrap::guardGate()
 {
+    cout << "ScavTrap " << name;
+    if (energy <= 0 || hit_points <= 0)
+    {
+        cout << " is unable to guard mode" << endl;
+        return;
+    }
+    --energy;
     cout << "ScavTrap " << name << " is in Gate keeper mode" << endl;
 }
 
