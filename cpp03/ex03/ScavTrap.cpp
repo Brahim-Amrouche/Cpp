@@ -6,7 +6,7 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 12:13:57 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/11/06 17:21:51 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/11/06 19:42:15 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void    ScavTrap::guardGate()
         return;
     }
     --energy;
-    cout << "ScavTrap " << name << " is in Gate keeper mode" << endl;
+    cout << " is in Gate keeper mode" << endl;
 }
 
 ScavTrap::~ScavTrap()

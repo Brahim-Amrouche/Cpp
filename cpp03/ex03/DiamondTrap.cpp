@@ -6,7 +6,7 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 17:34:31 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/11/06 19:22:24 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/11/06 19:38:20 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,14 @@ DiamondTrap &DiamondTrap::operator=(const DiamondTrap &eq_diamond)
 
 void DiamondTrap::whoAmI(void)
 {
-    cout << "DiamondTrap name is: " << DiamondTrap::name << " and it's ClapTrap name is: " << ScavTrap::name << endl;
+    cout << "DiamondTrap " << DiamondTrap::name;
+    if (energy <= 0 || hit_points <= 0)
+    {
+        cout << " is unable tell who he is" << endl;
+        return;
+    }
+    --energy;
+    cout << " and it's ClapTrap name is: " << ClapTrap::name << endl;
 };
 
 DiamondTrap::~DiamondTrap()

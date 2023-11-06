@@ -6,7 +6,7 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 16:24:17 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/11/06 18:23:36 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/11/06 19:42:24 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void    FragTrap::highFivesGuys(void)
         return;
     }
     --energy;
-    cout << "FragTrap " << name << " Gives You a Positive High Five" << endl;
+    cout << " Gives You a Positive High Five" << endl;
 }
 
 FragTrap::~FragTrap(void)
