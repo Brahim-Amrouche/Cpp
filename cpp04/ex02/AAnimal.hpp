@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   AAnimal.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/08 20:11:40 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/11/08 20:11:43 by bamrouch         ###   ########.fr       */
+/*   Created: 2023/11/08 20:14:57 by bamrouch          #+#    #+#             */
+/*   Updated: 2023/11/08 20:15:01 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,18 @@ using std::string;
 using std::cout;
 using std::endl;
 
-class Animal
+class AAnimal
 {
     protected:
         string type; 
+        AAnimal();
+        AAnimal(string new_type);
+        AAnimal(const AAnimal &cpy_animal);
     public:
-        Animal();
-        Animal(string new_type);
-        Animal(const Animal &cpy_animal);
-        Animal  &operator=(const Animal &eq_animal);
+        virtual AAnimal &operator=(const AAnimal &eq_animal);
         string  getType(void) const;
+        void    setType(string new_type);
         virtual void makeSound() const;
-        virtual ~Animal();
+        virtual ~AAnimal();
 };
 

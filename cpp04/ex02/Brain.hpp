@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/18 17:49:35 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/24 13:40:19 by bamrouch         ###   ########.fr       */
+/*   Created: 2023/11/08 20:15:53 by bamrouch          #+#    #+#             */
+/*   Updated: 2023/11/08 20:15:55 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 
 class   Brain
 {

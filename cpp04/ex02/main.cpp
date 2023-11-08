@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/24 13:39:59 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/24 14:54:14 by bamrouch         ###   ########.fr       */
+/*   Created: 2023/11/08 20:16:36 by bamrouch          #+#    #+#             */
+/*   Updated: 2023/11/08 20:18:31 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int main()
 {
-    AbstractAnimal *zoo[100];
+    AAnimal *zoo[100];
 
     size_t  i = -1;
     while (++i < 50)
@@ -26,4 +26,8 @@ int main()
     i = -1;
     while (++i < 100)
         delete zoo[i];
+    Cat x;
+    Cat y;
+    x = x;
+    x = y;
 }

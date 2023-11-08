@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/18 14:34:53 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/24 13:05:11 by bamrouch         ###   ########.fr       */
+/*   Created: 2023/11/08 20:12:56 by bamrouch          #+#    #+#             */
+/*   Updated: 2023/11/08 20:12:59 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,6 @@ class WrongAnimal
         WrongAnimal(const WrongAnimal &cpy_animal);
         WrongAnimal &operator=(const WrongAnimal &eq_animal);
         string      getType(void) const;
-        virtual void        makeSound(void) const;
+        void        makeSound(void) const;
         virtual ~WrongAnimal();
 };

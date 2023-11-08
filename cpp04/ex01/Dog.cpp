@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/18 13:14:34 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/24 12:32:58 by bamrouch         ###   ########.fr       */
+/*   Created: 2023/11/08 20:14:12 by bamrouch          #+#    #+#             */
+/*   Updated: 2023/11/08 20:14:15 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,12 @@ Dog::Dog(const Dog &cpy_dog): Animal(cpy_dog), brain(new Brain(*cpy_dog.brain))
 
 Dog &Dog::operator=(const Dog &eq_dog)
 {
-    Animal::operator=(eq_dog);
-    delete brain;
-    brain = new Brain(*eq_dog.brain);
+    if (this != &eq_dog)
+    {
+        Animal::operator=(eq_dog);
+        delete brain;
+        brain = new Brain(*eq_dog.brain);
+    }
     return (*this);
 }
 

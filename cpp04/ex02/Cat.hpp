@@ -5,16 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/18 12:49:49 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/24 13:40:29 by bamrouch         ###   ########.fr       */
+/*   Created: 2023/11/08 20:16:13 by bamrouch          #+#    #+#             */
+/*   Updated: 2023/11/08 20:16:16 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 #include "Brain.hpp"
 
-class Cat : public AbstractAnimal
+class Cat : public AAnimal
 {
     private:
         Brain   *brain;

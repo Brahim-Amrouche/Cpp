@@ -5,17 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/18 13:14:39 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/24 13:40:36 by bamrouch         ###   ########.fr       */
+/*   Created: 2023/11/08 20:16:30 by bamrouch          #+#    #+#             */
+/*   Updated: 2023/11/08 20:16:32 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #pragma  once
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 #include "Brain.hpp"
 
-class Dog: public AbstractAnimal
+class Dog: public AAnimal
 {
     private:
         Brain   *brain;

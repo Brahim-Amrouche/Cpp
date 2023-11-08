@@ -1,53 +1,56 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.cpp                                         :+:      :+:    :+:   */
+/*   AAnimal.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/08 20:11:17 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/11/08 20:11:18 by bamrouch         ###   ########.fr       */
+/*   Created: 2023/11/08 20:14:44 by bamrouch          #+#    #+#             */
+/*   Updated: 2023/11/08 20:14:47 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "AAnimal.hpp"
 
-
-#include "Animal.hpp"
-
-Animal::Animal():type("evolving")
+AAnimal::AAnimal():type("evolving")
 {
     cout << "an animal is Default constructing" << endl;
 };
 
-Animal::Animal(string new_type):type(new_type)
+AAnimal::AAnimal(string new_type):type(new_type)
 {
     cout << "an animal is string constructing" << endl;
 };
 
-Animal::Animal(const Animal &cpy_animal):type(cpy_animal.type)
+AAnimal::AAnimal(const AAnimal &cpy_animal):type(cpy_animal.type)
 {
     cout << "an animal is being Copy constructing" << endl;
 };
 
-Animal  &Animal::operator=(const Animal &eq_animal)
+AAnimal  &AAnimal::operator=(const AAnimal &eq_AbstractAnimal)
 {
     cout << "an animal is being Copy assignement constructing" << endl;
-    if (this != &eq_animal)
-        type = eq_animal.type;
+    if (this != &eq_AbstractAnimal)
+        type = eq_AbstractAnimal.type;
     return(*this);
 }
 
-string  Animal::getType(void) const
+string  AAnimal::getType(void) const
 {
     return type;
 };
 
-void    Animal::makeSound() const
+void    AAnimal::setType(string new_type)
+{
+    type = new_type;
+}
+
+void    AAnimal::makeSound() const
 {
     cout << ".../*gibrish*/" << endl;
 }
 
-Animal::~Animal()
+AAnimal::~AAnimal()
 {
-    cout << "an animal is destructuring" << endl;
+    cout << "an AAnimal is destructuring" << endl;
 }

@@ -5,11 +5,10 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/18 13:14:39 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/24 12:12:01 by bamrouch         ###   ########.fr       */
+/*   Created: 2023/11/08 20:12:25 by bamrouch          #+#    #+#             */
+/*   Updated: 2023/11/08 20:12:27 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #pragma  once
 #include "Animal.hpp"
@@ -20,6 +19,6 @@ class Dog: public Animal
         Dog();
         Dog(const Dog &eq_dog);
         Dog &operator=(const Dog &eq_dog);
-        void    makeSound(void) const;
-        ~Dog();
+        virtual void    makeSound(void) const;
+        virtual ~Dog();
 };

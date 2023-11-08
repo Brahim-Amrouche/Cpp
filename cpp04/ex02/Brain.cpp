@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/18 17:50:00 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/24 13:38:52 by bamrouch         ###   ########.fr       */
+/*   Created: 2023/11/08 20:15:46 by bamrouch          #+#    #+#             */
+/*   Updated: 2023/11/08 20:15:49 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,13 @@ Brain::Brain(const Brain &cpy_brain)
 
 Brain &Brain::operator=(const Brain &eq_brain)
 {
-    size_t i = -1;
-    while (++i < 100)
-        ideas[i] = eq_brain.ideas[i];
+    cout << "Brain assignement operator"  << endl;
+    if (this != &eq_brain)
+    {
+        size_t i = -1;
+        while (++i < 100)
+            ideas[i] = eq_brain.ideas[i];
+    }
     return (*this);
 }
 

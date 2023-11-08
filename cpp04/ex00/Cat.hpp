@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/18 12:49:49 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/24 12:11:52 by bamrouch         ###   ########.fr       */
+/*   Created: 2023/11/08 20:12:03 by bamrouch          #+#    #+#             */
+/*   Updated: 2023/11/08 20:12:06 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ class Cat : public Animal
         Cat();
         Cat(const Cat &cpy_cat);
         Cat &operator=(const Cat &eq_cat);
-        void    makeSound(void) const;
-        ~Cat();
+        virtual void    makeSound(void) const;
+        virtual ~Cat();
 };
 
 
