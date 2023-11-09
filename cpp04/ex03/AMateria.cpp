@@ -6,7 +6,7 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 11:35:31 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/24 15:38:06 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/11/09 19:45:15 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ AMateria::AMateria(const AMateria &cpy_materia): materia_type(cpy_materia.materi
 
 AMateria    &AMateria::operator=(const AMateria &eq_materia)
 {
-    materia_type = eq_materia.materia_type;
+    (void) eq_materia;
     return (*this);
 }
 

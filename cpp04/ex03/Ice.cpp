@@ -6,7 +6,7 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 11:47:06 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/24 16:18:52 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/11/09 20:36:41 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ Ice::Ice(const Ice &cpy_ice):AMateria(cpy_ice)
 
 Ice &Ice::operator=(const Ice &eq_ice)
 {
+    if (this == &eq_ice)
+        return (*this);
     AMateria::operator=(eq_ice);
     return (*this);
 }

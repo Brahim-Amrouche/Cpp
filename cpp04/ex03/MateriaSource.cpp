@@ -6,14 +6,14 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 15:21:55 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/24 16:15:58 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/11/09 20:51:50 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MateriaSource.hpp"
 
 
-MateriaSource::MateriaSource():insert_index(0)
+MateriaSource::MateriaSource()
 {
     size_t  i = -1;
     while (++i < 4)
@@ -32,11 +32,12 @@ MateriaSource::MateriaSource(const MateriaSource &cpy_source)
             cpy_materia = cpy_source.materias[i]->clone();
         materias[i] = cpy_materia;
     }
-    insert_index = cpy_source.insert_index;
 }
 
 MateriaSource &MateriaSource::operator=(const MateriaSource &eq_source)
 {
+    if (this == &eq_source)
+        return (*this);
     size_t i = -1;
     AMateria    *cpy_materia = NULL;
 
@@ -49,25 +50,33 @@ MateriaSource &MateriaSource::operator=(const MateriaSource &eq_source)
             delete materias[i];
         materias[i] = cpy_materia;
     }
-    insert_index = eq_source.insert_index;
     return *this;
 }
 
 void    MateriaSource::learnMateria(AMateria *m)
 {
-    if (insert_index > 3)
-        return ;
-    materias[insert_index] = m->clone();
-    ++insert_index;
+    if (!m)
+        return;
+    size_t i = -1;
+    while (++i < 4)
+    {
+        if (!materias[i])
+        {
+            materias[i] = m;
+            return ;
+        }
+    }
 }
 
 AMateria    *MateriaSource::createMateria(string const &type)
 {
     int  i = -1;
 
-    while (++i < insert_index)
+    while (++i < 4)
+    {
         if (materias[i] && materias[i]->getType() == type)
             return materias[i]->clone();
+    }
     return NULL;
 }
 
@@ -76,6 +85,8 @@ MateriaSource::~MateriaSource()
     size_t i = -1;
 
     while (++i < 4)
+    {
         if (materias[i])
             delete materias[i];
+    }
 }

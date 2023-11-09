@@ -6,7 +6,7 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 13:04:04 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/19 13:09:07 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/11/09 20:36:07 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ Cure::Cure(const Cure &cpy_cure):AMateria(cpy_cure)
 
 Cure    &Cure::operator=(const Cure &eq_cure)
 {
+    if (this == &eq_cure)
+        return (*this);
     AMateria::operator=(eq_cure);
     return(*this);
 };

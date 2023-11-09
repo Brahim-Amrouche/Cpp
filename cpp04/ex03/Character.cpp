@@ -6,13 +6,13 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 12:23:49 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/24 16:22:41 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/11/09 20:54:36 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Character.hpp"
 
-Character::Character():name(""), throw_index(0) , floor_materias(NULL)
+Character::Character():name(""), floor_materias(NULL)
 {
     size_t i = -1;
 
@@ -20,7 +20,7 @@ Character::Character():name(""), throw_index(0) , floor_materias(NULL)
         inventory[i] = NULL;
 }
 
-Character::Character(string const &new_name):name(new_name), throw_index(0), floor_materias(NULL)
+Character::Character(string const &new_name):name(new_name), floor_materias(NULL)
 {
     size_t i = -1;
 
@@ -28,8 +28,7 @@ Character::Character(string const &new_name):name(new_name), throw_index(0), flo
         inventory[i] = NULL;
 };
 
-Character::Character(const Character &cpy_character):name(cpy_character.name),
-    throw_index(cpy_character.throw_index)
+Character::Character(const Character &cpy_character):name(cpy_character.name)
 {
     size_t i = -1;
     AMateria    *deep_cpy_materias = NULL;
@@ -45,6 +44,8 @@ Character::Character(const Character &cpy_character):name(cpy_character.name),
 
 Character   &Character::operator=(const Character &eq_character)
 {
+    if (this == &eq_character)
+        return (*this);
     size_t i = -1;
     AMateria    *deep_cpy_materias = NULL;
 
@@ -58,7 +59,6 @@ Character   &Character::operator=(const Character &eq_character)
             delete inventory[i];
         inventory[i] = deep_cpy_materias;
     }
-    throw_index = eq_character.throw_index;
     return (*this);
 }
 
@@ -88,12 +88,17 @@ void    add_floor_materia(AMateria *materia, AMateria ***floor_materia)
 
 void    Character::equip(AMateria *m)
 {
-    if (throw_index > 3)
-        throw_index = 0;
-    if (inventory[throw_index])
-        add_floor_materia(inventory[throw_index], &floor_materias);
-    inventory[throw_index] = m->clone();
-    ++throw_index;
+    if (!m)
+        return;
+    size_t i = -1;
+    while (++i < 4)
+    {
+        if (!inventory[i])
+        {
+            inventory[i] = m;
+            return;
+        }
+    }
 }
 
 void    Character::unequip(int idx)
@@ -102,7 +107,6 @@ void    Character::unequip(int idx)
         return;
     add_floor_materia(inventory[idx], &floor_materias);
     inventory[idx] = NULL;
-    throw_index = idx;
 }
 
 void    Character::use(int idx, ICharacter &target)
@@ -124,4 +128,6 @@ Character::~Character()
     i = -1;
     while (floor_materias && floor_materias[++i])
         delete floor_materias[i];
+    if (floor_materias)
+        delete[] floor_materias;
 };
