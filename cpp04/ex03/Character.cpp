@@ -6,7 +6,7 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 12:23:49 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/11/09 20:54:36 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/11/09 21:37:42 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ void    add_floor_materia(AMateria *materia, AMateria ***floor_materia)
     }
     new_floor_materias[floor_matrias_len++] = materia;
     new_floor_materias[floor_matrias_len] = NULL;
+    if (*floor_materia)
+        delete[] *floor_materia;
     *floor_materia = new_floor_materias;
 }
 
