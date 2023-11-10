@@ -6,12 +6,12 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 14:05:49 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/11/09 20:49:00 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/11/10 12:06:00 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#include "Interfaces.hpp"
+#include "ICharacter.hpp"
 
 class Character: public ICharacter
 {

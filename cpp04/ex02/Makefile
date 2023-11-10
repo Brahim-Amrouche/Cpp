@@ -1,6 +1,6 @@
 NAME = Animal
 
-FLAGS = -Wall -Wextra -Werror -std=c++98
+FLAGS = -Wall -Wextra -Werror -std=c++98 #-fsanitize=address
 
 SRCS = main.cpp AAnimal.cpp Cat.cpp Dog.cpp Brain.cpp
 

@@ -6,7 +6,7 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 12:23:49 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/11/09 21:37:42 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/11/10 12:22:13 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,12 +95,19 @@ void    Character::equip(AMateria *m)
     size_t i = -1;
     while (++i < 4)
     {
+        if (inventory[i] == m)
+            return;
+    }
+    i = -1;
+    while (++i < 4)
+    {
         if (!inventory[i])
         {
             inventory[i] = m;
             return;
         }
     }
+    delete m;
 }
 
 void    Character::unequip(int idx)

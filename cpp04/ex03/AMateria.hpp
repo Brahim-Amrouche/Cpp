@@ -1,36 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Interfaces.hpp                                     :+:      :+:    :+:   */
+/*   AMateria.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/19 11:09:24 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/24 15:34:05 by bamrouch         ###   ########.fr       */
+/*   Created: 2023/11/10 12:03:37 by bamrouch          #+#    #+#             */
+/*   Updated: 2023/11/10 12:18:04 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #pragma once
 #include "string"
 #include "iostream"
 
-
 using   std::string;
 using   std::cout;
 using   std::endl;
 
-class AMateria;
-
-class ICharacter
-{
-    public:
-        virtual ~ICharacter() {}
-        virtual string const & getName() const = 0;
-        virtual void equip(AMateria* m) = 0;
-        virtual void unequip(int idx) = 0;
-        virtual void use(int idx, ICharacter& target) = 0;
-};
+class ICharacter;
 
 class AMateria
 {
@@ -47,10 +35,4 @@ class AMateria
         virtual ~AMateria();
 };
 
-class IMateriaSource
-{
-    public:
-        virtual ~IMateriaSource() {}
-        virtual void learnMateria(AMateria *m) = 0;
-        virtual AMateria* createMateria(string const & type) = 0;
-};
+#include "ICharacter.hpp"

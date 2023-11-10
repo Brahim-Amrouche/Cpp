@@ -6,7 +6,7 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 20:14:57 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/11/08 20:15:01 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/11/10 12:23:31 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ class AAnimal
         virtual AAnimal &operator=(const AAnimal &eq_animal);
         string  getType(void) const;
         void    setType(string new_type);
-        virtual void makeSound() const;
+        virtual void makeSound() const = 0;
         virtual ~AAnimal();
 };
 

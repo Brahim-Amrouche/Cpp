@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cure.hpp                                           :+:      :+:    :+:   */
+/*   Interfaces.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/19 12:54:49 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/11/10 12:08:01 by bamrouch         ###   ########.fr       */
+/*   Created: 2023/09/19 11:09:24 by bamrouch          #+#    #+#             */
+/*   Updated: 2023/11/10 12:05:19 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #pragma once
 #include "AMateria.hpp"
-#include "ICharacter.hpp"
 
-class Cure: public AMateria
+class ICharacter
 {
-    public :
-        Cure();
-        Cure(const Cure &cpy_cure);
-        Cure &operator=(const Cure &eq_cure);
-        Cure *clone() const;
-        void    use(ICharacter &target);
-        ~Cure();
+    public:
+        virtual ~ICharacter() {}
+        virtual string const & getName() const = 0;
+        virtual void equip(AMateria* m) = 0;
+        virtual void unequip(int idx) = 0;
+        virtual void use(int idx, ICharacter& target) = 0;
 };
+
 

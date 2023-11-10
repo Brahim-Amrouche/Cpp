@@ -6,11 +6,11 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 11:35:31 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/11/09 19:45:15 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/11/10 12:14:38 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Interfaces.hpp"
+#include "AMateria.hpp"
 
 AMateria::AMateria():materia_type("")
 {}
