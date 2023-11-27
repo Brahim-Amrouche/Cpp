@@ -6,17 +6,17 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 15:13:26 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/11/27 09:00:55 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/11/27 09:29:45 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PresidentialPardonForm.hpp"
 
 
-PresidentialPardonForm::PresidentialPardonForm():AForm("", 25, 5)
+PresidentialPardonForm::PresidentialPardonForm():AForm("PresidentialPardonForm", 25, 5)
 {}
 
-PresidentialPardonForm::PresidentialPardonForm(string new_name):AForm(new_name, 25, 5)
+PresidentialPardonForm::PresidentialPardonForm(const string &target_name):AForm("PresidentialPardonForm", 25, 5), target(target_name)
 {}
 
 PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &cpy_presid):
@@ -31,8 +31,8 @@ PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPard
 
 void PresidentialPardonForm::execute(const Bureaucrat &bureau)
 {
-    AForm::execute(bureau);
-    cout << bureau.getName() << " has been pardoned by Zaphod Beeblebrox." << endl;
+    AForm::check_signed(bureau);
+    cout << target << " has been pardoned by Zaphod Beeblebrox." << endl;
 }
 
 PresidentialPardonForm::~PresidentialPardonForm()

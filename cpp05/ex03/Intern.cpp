@@ -6,76 +6,45 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 18:50:12 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/30 17:13:32 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/11/27 10:53:43 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Intern.hpp"
-
-
-
-AForm   *CustomFormConstructor(string type, string name)
-{
-    size_t i = -1;
-    while (++i < 3)
-        if (forms_names[i] == type)
-            break;
-    switch (i)
-    {
-        case 0 :
-            return new ShrubberyCreationForm(name);
-        case 1 :
-            return new RobotomyRequestForm(name);
-        case 2 :
-            return new PresidentialPardonForm(name);
-        default :
-            cerr << "Not a Valid Form Type" << endl;
-    }
-    return NULL;
-}
-
-Form::Form():type(new AForm()), 
-    AForm(*type) , target("", 1)
-{}
-
-Form::Form(string new_type, string target_name):type(CustomFormConstructor(new_type, new_type)), 
-    AForm(type == NULL ? AForm(new_type, 1, 1) : *type) , target(target_name, 1)
-{
-    if (!type)
-        type = new AForm(new_type , 1, 1);
-};
-
-Form::Form(const Form &cpy_form): type(cpy_form.type), AForm(*type), target(cpy_form.target)
-{}
-
-Form &Form::operator=(const Form &eq_form)
-{
-    AForm::operator=(eq_form);
-    target = eq_form.target;
-    type = eq_form.type;
-    return (*this);
-}
-
-Form::~Form()
-{
-    delete type;
-}
-
-void Form::execute(const Bureaucrat &bureau)
-{
-    type->execute(target);
-}
-
 //  Intern Implementation
+static string forms_names[3] = {SHRUB, ROBOT, PRESID};
+static Form *(*constructor[3])(string x);
+
+Form *new_shrub(const string target)
+{
+    return new ShrubberyCreationForm(target);
+}
+
+Form *new_robo(const string target)
+{
+    return new RobotomyRequestForm(target);
+}
+
+Form *new_presid(const string target)
+{
+    return new PresidentialPardonForm(target);
+}
 
 Intern::Intern()
-{};
+{
+    constructor[0] = new_shrub;
+    constructor[1] = new_robo;
+    constructor[2] = new_presid;
+};
 
 Intern::Intern(const Intern &cpy_intern)
-{};
+{
+    (void) cpy_intern;
+};
 
 Intern &Intern::operator=(const Intern &eq_intern)
 {
+    (void) eq_intern;
     return (*this);
 };
 
@@ -85,6 +54,20 @@ Intern::~Intern()
 Form   *Intern::makeForm(string form_name, string target_name)
 {
     cout << "Intern creates " << form_name << endl;
-    Form        *new_form = new Form(form_name, target_name);
+    Form *new_form = NULL;
+    size_t i = -1;
+    while (++i < 3)
+    {
+        if (forms_names[i] == form_name)
+        {
+            new_form = constructor[i](target_name);
+            break;
+        }
+    }
+    if (!new_form)
+    {
+        cerr << "Not a Valid Form Type" << endl;
+        return NULL;
+    }
     return new_form;
 };

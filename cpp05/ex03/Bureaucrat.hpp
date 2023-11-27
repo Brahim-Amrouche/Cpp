@@ -6,7 +6,7 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 11:59:39 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/29 15:35:57 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/11/27 10:43:17 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ class Bureaucrat
         void    decrement_grade();
         string  getName() const;
         int     getGrade() const;
-        void    signForm(AForm &form) const;
-        void    executeForm(AForm &form) const;
+        void    signForm(Form &form) const;
+        void    executeForm(Form &form) const;
         ~Bureaucrat();
 };
 

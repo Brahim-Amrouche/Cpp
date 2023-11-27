@@ -6,14 +6,15 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 15:48:40 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/26 18:38:11 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/11/27 08:37:35 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "string"
+#include <string>
 #include "iostream"
+#include <sstream>
 #include "stdexcept"
 
 using std::string;
@@ -21,6 +22,7 @@ using std::cout;
 using std::cerr;
 using std::endl;
 using std::ostream;
+using std::stringstream;
 using std::exception;
 
 class Bureaucrat;
@@ -40,8 +42,12 @@ class Form
         };
         class GradeTooLowException : public exception
         {
+            private :
+                string s;
             public:
-                const char *what() const throw();
+                GradeTooLowException(const int &g);
+                virtual const char *what() const throw();
+                ~GradeTooLowException() throw();
         };
         Form();
         Form(string new_name, int new_sign_grade, int new_exec_grade);

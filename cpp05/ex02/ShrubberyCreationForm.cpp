@@ -6,7 +6,7 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 20:16:45 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/11/27 08:58:54 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/11/27 09:27:50 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ const char *ShrubberyCreationForm::FileErr::what() const throw()
     return "File err occured";
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm():AForm("", 145, 137)
+ShrubberyCreationForm::ShrubberyCreationForm():AForm("ShrubberyCreationForm", 145, 137)
 {};
 
-ShrubberyCreationForm::ShrubberyCreationForm(string new_name):AForm(new_name,  145, 137)
+ShrubberyCreationForm::ShrubberyCreationForm(const string &target_name):AForm("ShrubberyCreationForm",  145, 137), target(target_name)
 {};
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &cpy_shrubbery):AForm(cpy_shrubbery)
@@ -72,9 +72,9 @@ void  tree_trunk(ofstream &outfile)
 
 void  ShrubberyCreationForm::execute(const Bureaucrat &bureau)
 {
-    AForm::execute(bureau);
+    AForm::check_signed(bureau);
     ofstream    outfile;
-    outfile.open(bureau.getName().append("_shrubbery").c_str(), ios::out | ios::trunc);
+    outfile.open(target.append("_shrubbery").c_str(), ios::out | ios::trunc);
     if (!outfile)
         throw FileErr();
     tree_branches(outfile);

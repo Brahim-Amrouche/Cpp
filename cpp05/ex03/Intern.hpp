@@ -6,12 +6,14 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 18:28:37 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/30 17:05:11 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/11/27 10:53:24 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#include "ConcretForms.hpp"
+#include "PresidentialPardonForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "ShrubberyCreationForm.hpp"
 #include "Bureaucrat.hpp"
 
 class Intern
@@ -23,3 +25,4 @@ class Intern
         ~Intern();
         Form *makeForm(string form_name, string target_name);
 };
+

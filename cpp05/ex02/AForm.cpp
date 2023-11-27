@@ -91,7 +91,7 @@ void    AForm::beSigned(const Bureaucrat &bureau)
     setSign(true);
 }
 
-void AForm::execute(const Bureaucrat &bureau)
+void    AForm::check_signed(const Bureaucrat &bureau)
 {
     if (!is_signed)
         throw NotSigneForm();

@@ -63,8 +63,9 @@ class AForm
         int     getExecGrade() const;
         void    setSign(bool new_sign);
         void    beSigned(const Bureaucrat &bureau);
-        virtual void execute(const Bureaucrat &bureau);
-        ~AForm();
+        void    check_signed(const Bureaucrat &bureau);
+        virtual void execute(const Bureaucrat &bureau) = 0;
+        virtual ~AForm();
 };
 
 ostream &operator<<(ostream &os, const AForm &AForm);

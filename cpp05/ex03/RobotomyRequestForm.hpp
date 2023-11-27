@@ -6,17 +6,19 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 08:57:16 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/11/27 11:01:09 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/11/27 11:00:11 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#include "AForm.hpp"
+#include "Form.hpp"
 #include "Bureaucrat.hpp"
 #include <cstdlib>
 #include <ctime>
 
-class  RobotomyRequestForm : public AForm
+#define ROBOT "robotomy request"
+
+class  RobotomyRequestForm : public Form
 {
     private:
         const string target;
