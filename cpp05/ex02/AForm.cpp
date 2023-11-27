@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Form.hpp"
+#include "AForm.hpp"
 #include "Bureaucrat.hpp"
 
 const char *AForm::GradeTooHighException::what() const throw()
@@ -18,10 +18,21 @@ const char *AForm::GradeTooHighException::what() const throw()
     return "AForm Grade is Higher than 1";
 }
 
+AForm::GradeTooLowException::GradeTooLowException(const int &g)
+{
+    stringstream ss;
+    s += "Form Grade is ";
+    ss << g;
+    s += ss.str();
+}
+
 const char *AForm::GradeTooLowException::what() const throw()
 {
-    return "AForm Grade is Lower than 150";
+    return s.c_str();
 }
+
+AForm::GradeTooLowException::~GradeTooLowException() throw()
+{}
 
 const char *AForm::NotSigneForm::what() const throw()
 {
@@ -36,7 +47,7 @@ AForm::AForm(string new_name, int new_sign_grade, int new_exec_grade):name(new_n
     if (sign_grade < 1 || execute_grade < 1)
         throw GradeTooHighException();
     else if (sign_grade > 150 || execute_grade > 150)
-        throw GradeTooLowException();
+        throw GradeTooLowException(150);
 }
 
 AForm::AForm(const AForm &cpy_AForm):name(cpy_AForm.name), is_signed(false), sign_grade(cpy_AForm.sign_grade), execute_grade(cpy_AForm.execute_grade)
@@ -76,7 +87,7 @@ void    AForm::setSign(bool new_sign)
 void    AForm::beSigned(const Bureaucrat &bureau)
 {
     if (bureau.getGrade() > sign_grade)
-        throw GradeTooLowException();
+        throw GradeTooLowException(sign_grade);
     setSign(true);
 }
 
@@ -85,7 +96,7 @@ void AForm::execute(const Bureaucrat &bureau)
     if (!is_signed)
         throw NotSigneForm();
     if (bureau.getGrade() > execute_grade)
-        throw GradeTooLowException();
+        throw GradeTooLowException(execute_grade);
 }
 
 AForm::~AForm()

@@ -6,7 +6,7 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 11:59:39 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/29 15:35:57 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/11/27 08:51:07 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ using std::endl;
 using std::ostream;
 using std::exception;
 
-#include "Form.hpp"
+#include "AForm.hpp"
 
 class Bureaucrat
 {

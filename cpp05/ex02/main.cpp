@@ -6,11 +6,13 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 16:07:54 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/09/29 18:02:40 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/11/27 09:00:34 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ConcretForms.hpp"
+#include "PresidentialPardonForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "ShrubberyCreationForm.hpp"
 
 int main()
 {

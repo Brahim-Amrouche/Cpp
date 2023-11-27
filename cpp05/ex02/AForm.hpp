@@ -14,12 +14,14 @@
 #include "string"
 #include "iostream"
 #include "stdexcept"
+#include <sstream>
 
 using std::string;
 using std::cout;
 using std::cerr;
 using std::endl;
 using std::ostream;
+using std::stringstream;
 using std::exception;
 
 class Bureaucrat;
@@ -39,8 +41,12 @@ class AForm
         };
         class GradeTooLowException : public exception
         {
+            private :
+                string s;
             public:
-                const char *what() const throw();
+                GradeTooLowException(const int &g);
+                virtual const char *what() const throw();
+                ~GradeTooLowException() throw();
         };
         class NotSigneForm : public exception
         {
