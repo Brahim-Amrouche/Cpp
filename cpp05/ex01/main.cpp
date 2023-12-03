@@ -6,7 +6,7 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 12:32:22 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/11/27 08:45:10 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/12/03 17:51:44 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,6 @@ int main()
 {  
     Form    f("list", 1, 150);
     Bureaucrat b("brahim", 2);
-
-    try {
-        b.signForm(f);
-    }
-    catch (const Form::GradeTooLowException &e)
-    {
-        return (1);
-    }
-    cout << f << endl;
+    b.signForm(f);
     return (0);
 }
