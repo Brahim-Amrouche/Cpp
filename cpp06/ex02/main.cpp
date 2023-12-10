@@ -6,7 +6,7 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 14:45:22 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/10/03 23:10:45 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/12/10 16:07:02 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 int main()
 {
     Base *x = Base::generate();
-    C c;
 
     Base::identify(x);
-    Base::identify(c);
+    Base::identify(*x);
+    delete x;
 }

@@ -6,7 +6,7 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 11:44:29 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/10/02 13:43:55 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/12/10 15:51:16 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@ class Serializer
 {
     private:
         Serializer();
+        Serializer(const Serializer &cpy);
+        Serializer &operator=(const Serializer &eq);
+        ~Serializer();
     public:
         static uintptr_t    serialize(Data *ptr);
         static Data         *deserialize(uintptr_t raw);
