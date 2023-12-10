@@ -5,36 +5,60 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/30 18:26:28 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/10/01 16:25:58 by bamrouch         ###   ########.fr       */
+/*   Created: 2023/12/10 07:11:11 by bamrouch          #+#    #+#             */
+/*   Updated: 2023/12/10 14:29:24 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "string"
-#include "iostream"
-#include "sstream"
-#include "limits"
-#include "float.h"
-#include "cctype"
-#include "iomanip"
+#include <string>
+#include <iostream>
+#include <math.h>
+#include <float.h>
+#include <cctype>
+#include <cstdlib>
+#include <exception>
+#include <limits>
+#include <sstream>
+#include <limits.h>
 
+using std::exception;
 using std::string;
 using std::cout;
-using std::cerr;
 using std::endl;
-using std::istringstream;
-using std::invalid_argument;
-using std::isprint;
-using std::setprecision;
+
+class PInfException : public exception
+{
+    public:
+        const char *what() const throw();
+};
+
+class NInfException : public exception
+{
+    public:
+        const char *what() const throw();
+};
+
+class NanException :public exception
+{
+    public:
+        const char *what() const throw();
+};
+
+class ImpException:public exception
+{
+    public:
+        const char *what() const throw();
+};
 
 class ScalarConverter
 {
-    private :
+    private:
         ScalarConverter();
-    public :
-        template <typename T>
-        static T convert(const char *literal);
+        ScalarConverter(const ScalarConverter &cpy);
+        ScalarConverter &operator=(const ScalarConverter &eq);
+        ~ScalarConverter();
+    public:
+        static void Convert(const string str);
 };
-
