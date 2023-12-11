@@ -6,7 +6,7 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 22:38:09 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/10/07 01:04:43 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/12/11 10:09:02 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "string"
 #include "iostream"
 #include "exception"
+#include <cstdlib>
 
 using std::string;
 using std::cout;
@@ -46,7 +47,7 @@ class Array
             while (++i < s)
                 content[i] = eq_array[i];
         };
-        T   &operator[](size_t index)
+        T   &operator[](size_t index) const
         {
             if (s == 0 || index > s - 1)
                 throw exception();
