@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   A.hpp                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/02 14:45:22 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/12/11 09:16:06 by bamrouch         ###   ########.fr       */
+/*   Created: 2023/12/11 09:11:04 by bamrouch          #+#    #+#             */
+/*   Updated: 2023/12/11 09:12:50 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#pragma once
 #include "Base.hpp"
 
-int main()
+class A : public Base
 {
-    Base *x = Base::generate();
-
-    Base::identify(x);
-    Base::identify(*x);
-    delete x;
-}
+    public:
+        ~A();
+};

@@ -18,6 +18,19 @@ double double_conv(const string &input)
         throw ImpException();
 }
 
+bool    double_has_decimal(const string &dbl_str)
+{
+    size_t i = -1;
+    while (dbl_str[++i])
+    {
+        if (std::isdigit(dbl_str[i]))
+            continue;
+        else
+            return true;
+    }
+    return false;
+}
+
 void float_conv(const double &dbl_val, const string &dbl_str ,string &flt_str)
 {
     float flt_val = 0;
@@ -31,10 +44,14 @@ void float_conv(const double &dbl_val, const string &dbl_str ,string &flt_str)
         std::stringstream ss;
         ss << flt_val;
         ss >> flt_str;
-        if (flt_str.find('.') != string::npos)
-            flt_str += 'f';
-        else
+        string tmp;
+        ss.clear();
+        ss << dbl_val;
+        ss >> tmp;
+        if (!double_has_decimal(tmp))
             flt_str += ".0f";
+        else
+            flt_str += 'f';
     }
     (void) flt_val;
 }
@@ -106,6 +123,8 @@ ScalarConverter &ScalarConverter::operator=(const ScalarConverter &eq)
     return *this;
 }
 
+
+
 void ScalarConverter::Convert(const string str)
 {
     string dbl_str, flt_str, int_str, c_str;
@@ -116,9 +135,7 @@ void ScalarConverter::Convert(const string str)
         std::stringstream ss;
         ss << dbl_val;
         ss >> dbl_str;
-        if (dbl_str.find('.') == string::npos && dbl_str != "nan"
-            && dbl_val != std::numeric_limits<double>::infinity() 
-            && dbl_val != -std::numeric_limits<double>::infinity())
+        if (!double_has_decimal(dbl_str))
             dbl_str += ".0";
     }
     catch(const ImpException &e)

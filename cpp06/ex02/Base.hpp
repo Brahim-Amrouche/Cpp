@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Types.hpp                                          :+:      :+:    :+:   */
+/*   Base.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 14:37:55 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/10/03 23:04:28 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/12/11 09:16:15 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,23 +37,4 @@ class Base
         static void     identify(Base *p);
         static void     identify(Base &p);
         virtual ~Base();
-};
-
-
-class A : public Base
-{
-    public:
-        ~A();
-};
-
-class B: public Base
-{
-    public:
-        ~B();
-};
-
-class C: public Base
-{
-    public:
-        ~C();
 };

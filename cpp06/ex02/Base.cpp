@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Types.cpp                                          :+:      :+:    :+:   */
+/*   Base.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 14:53:27 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/10/03 23:08:14 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/12/11 09:16:23 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Types.hpp"
-
+#include "A.hpp"
+#include "B.hpp"
+#include "C.hpp"
 
 Base *Base::generate(void)
 {
@@ -94,12 +95,9 @@ void    Base::identify(Base &p)
 Base::~Base()
 {}
 
-A::~A()
-{}
 
 B::~B()
 {}
 
-C::~C()
-{}
+
 

@@ -2,7 +2,7 @@ NAME = convert
 
 FLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRCS = main.cpp Types.cpp main.cpp
+SRCS = main.cpp Base.cpp main.cpp A.cpp B.cpp C.cpp
 
 CC = c++
 
