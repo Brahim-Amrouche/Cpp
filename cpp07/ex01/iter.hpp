@@ -6,7 +6,7 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 21:40:34 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/10/06 22:19:13 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/12/12 11:12:37 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,12 @@ using std::string;
 using std::cout;
 using std::endl;
 
-template <typename T>
-void iter(T *array, size_t length, void (*func)(T &))
+template <typename T, typename FUNC>
+void iter(T *array, size_t length,FUNC *f)
 {
+    if (!array || !f)
+        return;
     size_t i = -1;
     while (++i < length)
-        func(array[i]);
+        f(array[i]);
 }
-

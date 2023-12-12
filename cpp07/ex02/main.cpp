@@ -6,7 +6,7 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 10:07:11 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/12/11 10:13:26 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/12/12 09:34:33 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,3 +64,9 @@ int main(int, char**)
     delete [] mirror;//
     return 0;
 }
+
+// int main()
+// {
+//     Array<int> x(10);
+//     x = x;
+// }

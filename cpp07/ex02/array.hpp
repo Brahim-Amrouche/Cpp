@@ -6,7 +6,7 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 22:38:09 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/12/11 10:09:02 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/12/12 09:33:38 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ class Array
         };
         Array &operator=(const Array &eq_array)
         {
+            if (this == &eq_array)
+                return *this;
             size_t i = -1;
             
             s = eq_array.s;
@@ -46,6 +48,7 @@ class Array
             content = new T[s];
             while (++i < s)
                 content[i] = eq_array[i];
+            return (*this);
         };
         T   &operator[](size_t index) const
         {
