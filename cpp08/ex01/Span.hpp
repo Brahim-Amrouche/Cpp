@@ -4,17 +4,19 @@
 #include <iostream>
 #include <exception>
 #include <cstdlib>
+#include <algorithm>
 
 using std::vector;
 using std::cout;
 using std::endl;
 using std::exception;
 
+
 class Span
 {
     private :
-        vector<int> v_span;
         size_t      size;
+        vector<int> v_span;
     public :
         class OutOfSpanRange: public exception
         {
@@ -26,10 +28,11 @@ class Span
         };
         Span();
         Span(unsigned int N);
-        Span(vector<int>::iterator begin, vector<int>::iterator end);
         Span(const Span &cpy_span);
         Span &operator=(const Span &eq_span);
         void    addNumber(int number);
+        void    addNumber(vector<int>::const_iterator begin, 
+            vector<int>::const_iterator end);
         size_t    shortestSpan();
         size_t    longestSpan();
         ~Span();

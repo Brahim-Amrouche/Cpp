@@ -22,5 +22,27 @@ int main()
         ++it;
     }
     std::stack<int> s(mstack);
+    // list implementation
+    cout << "list output" <<endl;
+    list<int> lst;
+    lst.push_back(5);
+    lst.push_back(17);
+    cout << lst.back() << endl;
+    lst.pop_back();
+    cout << lst.size() << endl;
+    lst.push_back(3);
+    lst.push_back(5);
+    lst.push_back(737);
+    lst.push_back(0);
+    list<int>::iterator l_it = lst.begin();
+    list<int>::iterator l_ite = lst.end();
+    ++l_it;
+    --l_it;
+    while(l_it != l_ite)
+    {
+        cout << *l_it << endl;
+        ++l_it;
+    }
+    list<int> l(lst);
     return 0;
 }

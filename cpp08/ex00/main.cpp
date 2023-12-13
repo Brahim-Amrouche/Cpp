@@ -6,7 +6,7 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 07:09:08 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/10/13 07:23:37 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/12/13 10:38:47 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,33 @@
 
 int main()
 {
-    vector<int> v_nums;
-    list<int> l_nums;
+    vector<int> v_nums(1, 1);
+    list<int> l_nums(1, 1);
 
-    int i = 0;
-    while (++i < 6)
-    {
-        v_nums.push_back(i);
-        l_nums.push_back(6 - i);
-    }
+    // int i = 0;
+    // while (++i < 6)
+    // {
+    //     v_nums.push_back(i);
+    //     l_nums.push_back(6 - i);
+    // }
+    
+    vector<int>::const_iterator v_it = easyfind(v_nums, 1);
+    list<int>::const_iterator l_it = easyfind(l_nums, 1);
+    vector<int>::const_iterator not_v_it = easyfind(v_nums, -1);
+    list<int>::const_iterator not_l_it = easyfind(l_nums, -1);
 
-    int v_index = easyfind(v_nums, 2);
-    int l_index = easyfind(l_nums, 2);
-    int v_not_found = easyfind(v_nums, -1);
-    int l_not_found = easyfind(l_nums, -1);
-
-    cout << "this is the index of 2 in v_nums :"<< v_index << endl;
-    cout << "this is the index of 2 in l_nums :"<< l_index << endl;
-    cout << "this is the index of -1 in v_nums :"<< v_not_found << endl;
-    cout << "this is the index of -1 in l_nums :"<< l_not_found << endl;
+    // vector<int>::iterator v_it = easyfind(v_nums, 1);
+    // list<int>::iterator l_it = easyfind(l_nums, 1);
+    // vector<int>::iterator not_v_it = easyfind(v_nums, -1);
+    // list<int>::iterator not_l_it = easyfind(l_nums, -1);
+    // *v_it = 5;
+    // *l_it = 3;
+    if (v_it != v_nums.end())
+        cout << "the number 1 is found in vector: "<< *v_it << endl;
+    if (l_it != l_nums.end())
+        cout << "the number 1 is found in list: "<< *l_it << endl;
+    if (not_v_it != v_nums.end())
+        cout << "the number -1 is not found in vector: "<< *not_v_it << endl;
+    if (not_l_it != l_nums.end())
+        cout << "the number -1 is not found in list: "<< *not_l_it << endl;
 }
