@@ -6,7 +6,7 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 10:35:43 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/12/12 17:49:11 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/12/14 13:35:07 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ const char *CsvHash::WrongCsvFormat::what() const throw()
             return "Invalid date format";
         case CSV_ERRORS::INVALID_PRICE:
             return "Invalid price";
+        case CSV_ERRORS::DUPLICATE_DATE:
+            return "Duplicated Date key";
         default:
             return "Undefined Error";
     }
@@ -49,7 +51,7 @@ CsvHash::CsvHash()
     if (buff != CSV_HEADER)
         throw CsvHash::WrongCsvFormat(CSV_ERRORS::WRONG_HEADER);
     while (std::getline(ifs, buff))
-        hashPrices(buff);   
+        hashPrices(buff);
     if (date_prices.empty())
         throw CsvHash::WrongCsvFormat(CSV_ERRORS::EMPTY_DATA);
 }
@@ -91,22 +93,45 @@ void parse_date(string &date)
     if ((first_minus = date.find_first_of('-')) == string::npos)
         throw CsvHash::WrongCsvFormat(CSV_ERRORS::INVALID_DATE);
     s_year = date.substr(0, first_minus);
-    if ((v_year = str_is_int(s_year)) <= 0)
+    if (s_year.size() == 0 || (v_year = str_is_int(s_year)) <= 0)
         throw CsvHash::WrongCsvFormat(CSV_ERRORS::INVALID_DATE);
     if ((second_minus = date.find_first_of('-', first_minus + 1)) == string::npos
         || second_minus - first_minus != 3)
         throw CsvHash::WrongCsvFormat(CSV_ERRORS::INVALID_DATE);
     s_month = date.substr(first_minus + 1, 2);
-    if ((v_month = str_is_int(s_month)) <= 0)
+    if (s_month.size() < 2 || (v_month = str_is_int(s_month)) <= 0)
         throw CsvHash::WrongCsvFormat(CSV_ERRORS::INVALID_DATE);
     if (v_month < 1 || v_month > 12)
         throw CsvHash::WrongCsvFormat(CSV_ERRORS::INVALID_DATE);
     s_day = date.substr(second_minus + 1, 2);
-    if ((v_day = str_is_int(s_day)) <= 0)
+    if (s_day.size() < 2 || (v_day = str_is_int(s_day)) <= 0)
         throw CsvHash::WrongCsvFormat(CSV_ERRORS::INVALID_DATE);
     validate_day(v_year, v_month, v_day);
     if (date.size() > second_minus + 2)
         throw CsvHash::WrongCsvFormat(CSV_ERRORS::INVALID_DATE);
+}
+
+double  parse_price(string &s_price)
+{
+    if (s_price.size() == 0)
+        throw CsvHash::WrongCsvFormat(CSV_ERRORS::INVALID_PRICE);
+    size_t i = -1;
+    bool  point_set = false;
+    while (++i < s_price.size())
+    {
+        if (std::isdigit(s_price[i]))
+            continue;
+        else if (s_price[i] == '.' && !point_set)
+            point_set = true;
+        else
+            throw CsvHash::WrongCsvFormat(CSV_ERRORS::INVALID_PRICE);
+    }
+    const char *start = s_price.c_str();
+    char *end;
+    double v_price = std::strtod(start, &end);
+    if (start == end || v_price < 0)
+        throw CsvHash::WrongCsvFormat(CSV_ERRORS::INVALID_PRICE);
+    return v_price;
 }
 
 void    CsvHash::hashPrices(string &row)
@@ -116,12 +141,27 @@ void    CsvHash::hashPrices(string &row)
         throw CsvHash::WrongCsvFormat(CSV_ERRORS::BAD_CSV_FORMAT);
     string date = row.substr(0, comma_pos);
     parse_date(date);
-    
+    string price = row.substr(comma_pos + 1);
+    double val = parse_price(price);
+    if (date_prices.find(date) != date_prices.end())
+        throw CsvHash::WrongCsvFormat(CSV_ERRORS::DUPLICATE_DATE);
+    date_prices.insert(date, price);
+}
+
+double    CsvHash::getPrice(string &date)
+{
+    parse_date(date);
+    if (date_prices.find(date) != date_prices.end())
+        return date_prices[date];
+    map<string, double>::iterator prev = date_prices.lower_bound(date);
+    if (prev != date_prices.end())
+        return prev->second;
+    else
+        throw CsvHash::WrongCsvFormat(CSV_ERRORS::INVALID_PRICE);
 }
 
 CsvHash::CsvHash(const CsvHash &cpy_csv)
 {
-    
 }
 
 CsvHash &CsvHash::operator=(const CsvHash &eq_csv)
