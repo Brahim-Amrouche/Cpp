@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   CsvHash.hpp                                        :+:      :+:    :+:   */
+/*   BitcoinExchange.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/12 09:57:01 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/12/14 13:34:29 by bamrouch         ###   ########.fr       */
+/*   Created: 2023/12/15 12:58:16 by bamrouch          #+#    #+#             */
+/*   Updated: 2023/12/15 16:23:24 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ using std::exception;
 using std::cout;
 using std::endl;
 
+// CSV_HASH
 #define DATA_FILE "data.csv"
 #define CSV_HEADER "date,exchange_rate"
 enum CSV_ERRORS
@@ -67,6 +68,42 @@ class CsvHash
         void hashPrices(string &row);
         double getPrice(string &date);
         ~CsvHash();
+};
+
+// BtcWallet
+#define INPUT_HEADER "date | value"
+
+enum BTCWALLET_ERR
+{
+    WRONG_FILE,
+    WRONG_FILE_FORMAT,
+    BAD_DATE,
+    NEGATIVE_COUNT,
+    GREAT_COUNT,
+};
+
+class BtcWallet
+{
+    private:
+        CsvHash &csv_data;
+        ifstream ifs;
+    public:
+        class BtcWalletExcept : public exception
+        {
+            private:
+                BTCWALLET_ERR code;
+                string        info_data;
+            public:
+                BtcWalletExcept(BTCWALLET_ERR err_c, string info);
+                const char *what() const throw();
+                ~BtcWalletExcept() throw();
+        };
+        BtcWallet();
+        BtcWallet(const string &path, CsvHash &data);
+        BtcWallet(const BtcWallet &cpy_btc);
+        BtcWallet &operator=(const BtcWallet &eq_btc);
+        void    handleLine(const string &line);
+        ~BtcWallet();
 };
 
 

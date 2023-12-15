@@ -5,14 +5,9 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/14 15:03:55 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/12/15 13:05:03 by bamrouch         ###   ########.fr       */
+/*   Created: 2023/12/15 15:53:27 by bamrouch          #+#    #+#             */
+/*   Updated: 2023/12/15 15:53:34 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "BitcoinExchange.hpp"
-
-int main()
-{
-
-}
+#pragma once
