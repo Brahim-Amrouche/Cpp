@@ -6,7 +6,7 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:55:10 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/12/15 18:22:21 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/12/16 11:05:54 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include <string>
 #include <stack>
 #include <cctype>
+#include <sstream>
 
 #define PLUS '+'
 #define MINUS '-'
@@ -29,29 +30,31 @@ using std::cout;
 using std::endl;
 using std::stack;
 using std::exception;
+using std::stringstream;
 
 enum RPN_ERRORS
 {
     WRONG_TOKEN,
     WRONG_SYNTAX,
+    DIV_BY_ZERO,
 };
 
 class Rpn 
 {
     private:
-        void    calc_plus();
-        void    calc_minus();
-        void    calc_mult();
-        void    calc_div();
+        long long    calc_plus(const long long &op1, const long long &op2);
+        long long    calc_minus(const long long &op1, const long long &op2);
+        long long    calc_mult(const long long &op1, const long long &op2);
+        long long    calc_div(const long long &op1, const long long &op2);
         stack<string> rpn_stack;
     public:
         class RpnException: public exception
         {
             private:
-                RPN_ERRORS err_c;
+                RPN_ERRORS  err_c;
                 string msg;
             public:
-                RpnException(RPN_ERRORS err);
+                RpnException(RPN_ERRORS  err);
                 const char *what() const throw();
                 ~RpnException() throw(); 
         };
