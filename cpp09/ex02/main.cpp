@@ -6,7 +6,7 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 17:52:56 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/12/16 18:51:36 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/12/17 17:45:23 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,10 @@
 int main(int argc, char *argv[])
 {
     if (argc < 2)
+    {
         cout << "Error: No input given" << endl;
+        return (1);
+    }
     try
     {
         PmergeMe merger(argc, argv);
