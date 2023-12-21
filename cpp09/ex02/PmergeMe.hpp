@@ -13,13 +13,16 @@
 #pragma once
 
 #include <iostream>
+#include <iomanip>
 #include <string>
 #include <list>
 #include <vector>
 #include <limits.h>
 #include <cstdlib>
 #include <deque>
+#include <ctime>
 #define SPACES "\t "
+#define MICRO_SEC 1000000
 
 using std::cout;
 using std::endl;
@@ -40,6 +43,8 @@ class PmergeMe
     private:
         list<int> i_lis;
         deque<int> i_deq;
+        double deq_time;
+        double lis_time;
     public:
         class PmergeMeExcept: public exception
         {
@@ -57,5 +62,6 @@ class PmergeMe
         PmergeMe &operator=(const PmergeMe &eq_merge);
         void sortDeque(deque<int> &s_deq);
         void sortList(list<int> &s_lis);
+        void printDeq();
         ~PmergeMe();
 };

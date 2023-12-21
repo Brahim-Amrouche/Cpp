@@ -64,7 +64,7 @@ int parseInt(string &numbers)
     return res;
 }
 
-PmergeMe::PmergeMe(int &argc,char *argv[])
+PmergeMe::PmergeMe(int &argc,char *argv[]):deq_time(0), lis_time(0)
 {
     int i = 0;
     int value = 0;
@@ -87,15 +87,18 @@ PmergeMe::PmergeMe(int &argc,char *argv[])
     }
     if (!i_deq.size())
         throw PmergeMe::PmergeMeExcept(NO_INPUT);
+    cout <<  "Before:";
+    printDeq();
+    deq_time = clock();
     sortDeque(i_deq);
+    deq_time = static_cast<double>((clock() - deq_time) * MICRO_SEC)  / CLOCKS_PER_SEC;
+    lis_time = clock();
     sortList(i_lis);
-    cout << "i_lis size: " << i_lis.size() << endl;
-    for (size_t j = 0 ; j < i_deq.size(); j++)
-    {
-        cout << "deq: " << i_deq[j] << endl;
-        cout << "lis: " << i_lis.front() << endl;
-        i_lis.pop_front();
-    }
+    lis_time = static_cast<double>((clock() - lis_time) * MICRO_SEC) / CLOCKS_PER_SEC;
+    cout << "After:";
+    printDeq();
+    cout << "Time to process a range of " << i_deq.size()  <<" elements with std::deque : " << std::fixed << std::setprecision(3) << deq_time << "us" << endl;
+    cout << "Time to process a range of "<< i_deq.size() <<" elements with std::list : " << std::fixed << std::setprecision(3) << lis_time  << "us" << endl;
 }
 
 PmergeMe::PmergeMe(const PmergeMe &cpy_merge)
@@ -176,6 +179,15 @@ void PmergeMe::sortList(list<int> &s_lis)
         s_lis.insert(elem, pending_chain.front());
         pending_chain.pop_front();
     }
+}
+
+void    PmergeMe::printDeq()
+{
+    for (size_t i = 0; i < i_deq.size(); i++)
+    {
+        cout << " " << i_deq[i];
+    }
+    cout << endl;
 }
 
 PmergeMe::~PmergeMe()
