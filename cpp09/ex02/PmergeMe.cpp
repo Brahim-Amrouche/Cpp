@@ -87,6 +87,15 @@ PmergeMe::PmergeMe(int &argc,char *argv[])
     }
     if (!i_deq.size())
         throw PmergeMe::PmergeMeExcept(NO_INPUT);
+    sortDeque(i_deq);
+    sortList(i_lis);
+    cout << "i_lis size: " << i_lis.size() << endl;
+    for (size_t j = 0 ; j < i_deq.size(); j++)
+    {
+        cout << "deq: " << i_deq[j] << endl;
+        cout << "lis: " << i_lis.front() << endl;
+        i_lis.pop_front();
+    }
 }
 
 PmergeMe::PmergeMe(const PmergeMe &cpy_merge)
@@ -113,25 +122,60 @@ void    PmergeMe::sortDeque(deque<int> &s_deq)
 {
     if (s_deq.size() <= 1)
         return;
-
     deque<int> main_chain;
     deque<int> pending_chain;
-    for (size_t i = 0; i < s_deq.size(); i += 2)
+    for (; s_deq.size() ;)
     {
-        if (i + 1 < s_deq.size() && s_deq[i] < s_deq[i + 1])
-            t_swap(s_deq[i], s_deq[i + 1]);
-        main_chain.push_back(s_deq[i]);
-        if (i + 1 < s_deq.size())
-            pending_chain.push_back(s_deq[i + 1]);
+        if (s_deq.size() >= 2 && s_deq[0] < s_deq[1])
+            t_swap(s_deq[0], s_deq[1]);
+        main_chain.push_back(s_deq[0]);
+        s_deq.pop_front();
+        if (s_deq.size())
+        {
+            pending_chain.push_back(s_deq[0]);
+            s_deq.pop_front();
+        }
     }
     sortDeque(main_chain);
-    for (size_t i = 0; pending_chain.size(); i = 0)
+    s_deq = main_chain;
+    for (;pending_chain.size();)
     {
-        deque<int>::iterator elem = std::lower_bound(main_chain.begin(), main_chain.end(), pending_chain[i]);
-        main_chain.insert(elem, pending_chain[i]);
+        deque<int>::iterator elem = std::lower_bound(s_deq.begin(), s_deq.end(), pending_chain.front());
+        s_deq.insert(elem, pending_chain.front());
         pending_chain.pop_front();
     }
-    s_deq = main_chain;
+}
+
+void PmergeMe::sortList(list<int> &s_lis)
+{
+    if (s_lis.size() <= 1)
+        return;
+    list<int> main_chain;
+    list<int> pending_chain;
+    for (; s_lis.size(); )
+    {
+        int first = s_lis.front();
+        s_lis.pop_front();
+        int second = -1;
+        if (s_lis.size())
+        {
+            second = s_lis.front();
+            s_lis.pop_front();
+        }
+        if ( first < second)
+            t_swap(first, second);
+        main_chain.push_back(first);
+        if (second >= 0)
+            pending_chain.push_back(second);
+    }
+    sortList(main_chain);
+    s_lis = main_chain;
+    for (; pending_chain.size(); )
+    {
+        list<int>::iterator elem = std::lower_bound(s_lis.begin(), s_lis.end(), pending_chain.front());
+        s_lis.insert(elem, pending_chain.front());
+        pending_chain.pop_front();
+    }
 }
 
 PmergeMe::~PmergeMe()

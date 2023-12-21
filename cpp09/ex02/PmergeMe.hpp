@@ -56,5 +56,6 @@ class PmergeMe
         PmergeMe(const PmergeMe &cpy_merge);
         PmergeMe &operator=(const PmergeMe &eq_merge);
         void sortDeque(deque<int> &s_deq);
+        void sortList(list<int> &s_lis);
         ~PmergeMe();
 };
