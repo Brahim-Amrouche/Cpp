@@ -6,7 +6,7 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 12:58:16 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/12/24 20:00:47 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/12/24 23:01:48 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,13 @@ enum CSV_ERRORS
     DUPLICATE_DATE,
 };
 
-void    parse_date(string &date);
+long parse_date(string &date);
 
 class CsvHash
 {
     private:
         ifstream ifs;
-        map<string, double>    date_prices;
+        map<long, double>    date_prices;
     public:
         class FileOpenFailed : public exception
         {

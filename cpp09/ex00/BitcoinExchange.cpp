@@ -65,10 +65,16 @@ CsvHash::CsvHash()
 int    str_to_int(string &str)
 {
     size_t i = -1;
+    size_t zero_count = 0;
+    bool zero_unset = false;
     while (str[++i])
     {
-        if (!std::isdigit(str[i]) && i < 10)
+        if (!std::isdigit(str[i]) ||  i - zero_count >= 10)
             return -1;
+        if (!zero_unset && str[i] == '0')
+            ++zero_count;
+        else if (str[i] != '0')
+            zero_unset = true;
     }
     char *end;
     long n = std::strtol(str.c_str(), &end, 10);
@@ -90,10 +96,10 @@ void validate_day(const int &year,const int &month,const int &day)
         throw CsvHash::WrongCsvFormat(INVALID_DATE);
 }
 
-void parse_date(string &date)
+long parse_date(string &date)
 {
     string s_year, s_month, s_day;
-    int v_year, v_month, v_day;
+    long v_year, v_month, v_day;
     size_t first_minus, second_minus;
     if ((first_minus = date.find_first_of('-')) == string::npos)
         throw CsvHash::WrongCsvFormat(INVALID_DATE);
@@ -114,6 +120,7 @@ void parse_date(string &date)
     validate_day(v_year, v_month, v_day);
     if (date.size() > second_minus + 3)
         throw CsvHash::WrongCsvFormat(INVALID_DATE);
+    return (v_year * 10000  + v_month * 100 + v_day);
 }
 
 double  parse_price(string &s_price)
@@ -147,20 +154,24 @@ void    CsvHash::hashPrices(string &row)
     if ((comma_pos = row.find_first_of(',')) == string::npos)
         throw CsvHash::WrongCsvFormat(BAD_CSV_FORMAT);
     string date = row.substr(0, comma_pos);
-    parse_date(date);
+    long v_date = parse_date(date);
     string price = row.substr(comma_pos + 1);
     double val = parse_price(price);
-    if (date_prices.find(date) != date_prices.end())
+    if (date_prices.find(v_date) != date_prices.end())
         throw CsvHash::WrongCsvFormat(DUPLICATE_DATE);
-    date_prices.insert(std::pair<string, double>(date, val));
+    date_prices.insert(std::pair<long, double>(v_date, val));
 }
 
 double    CsvHash::getPrice(string &date)
 {
-    parse_date(date);
-    if (date_prices.find(date) != date_prices.end())
-        return date_prices[date];
-    map<string, double>::iterator prev = date_prices.lower_bound(date);
+    long v_date = parse_date(date);
+    if (date_prices.find(v_date) != date_prices.end())
+        return date_prices[v_date];
+    map<long, double>::iterator last = date_prices.end();
+    --last;
+    if (last->first < v_date)
+        return last->second;
+    map<long, double>::iterator prev = date_prices.lower_bound(v_date);
     if (prev != date_prices.end() && prev != date_prices.begin())
         return (--prev)->second;
     else
@@ -308,7 +319,7 @@ void BtcWallet::handleLine(const string &line)
         std::cout << e.what() << endl;
         return;
     }
-    cout << date << "=> " << s_value << " = " << value * price << endl;
+    cout << date << " => " << s_value << " = " << value * price << endl;
 }
 
 BtcWallet::~BtcWallet()

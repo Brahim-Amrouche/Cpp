@@ -6,7 +6,7 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 15:03:55 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/12/24 21:24:20 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/12/24 22:12:53 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,10 @@
 
 int main(int argc, char *argv[])
 {
-    if (argc != 2)
-    {
-        cout << "Error: Wrong arguments given" << endl;
-        return (1);
-    }
     try
     {
+        if (argc != 2)
+            throw BtcWallet::BtcWalletExcept(WRONG_FILE, "");
         CsvHash csv_data;
         BtcWallet btc_wallet(argv[1], csv_data);
         return (0);
