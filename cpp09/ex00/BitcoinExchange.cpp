@@ -70,7 +70,6 @@ int    str_to_int(string &str)
         if (!std::isdigit(str[i]) && i < 10)
             return -1;
     }
-
     char *end;
     long n = std::strtol(str.c_str(), &end, 10);
     if (n > INT_MAX || n <= 0)
@@ -98,23 +97,32 @@ void parse_date(string &date)
     size_t first_minus, second_minus;
     if ((first_minus = date.find_first_of('-')) == string::npos)
         throw CsvHash::WrongCsvFormat(INVALID_DATE);
+    // cout << "found first -" << endl;
     s_year = date.substr(0, first_minus);
     if (s_year.size() == 0 || (v_year = str_to_int(s_year)) <= 0)
         throw CsvHash::WrongCsvFormat(INVALID_DATE);
+    // cout << "year is right: "  << v_year << endl;
     if ((second_minus = date.find_first_of('-', first_minus + 1)) == string::npos
         || second_minus - first_minus != 3)
         throw CsvHash::WrongCsvFormat(INVALID_DATE);
+    // cout << "found second -" << endl;
     s_month = date.substr(first_minus + 1, 2);
     if (s_month.size() < 2 || (v_month = str_to_int(s_month)) <= 0)
         throw CsvHash::WrongCsvFormat(INVALID_DATE);
+    // cout << "month is right: " << v_month << endl;
     if (v_month < 1 || v_month > 12)
         throw CsvHash::WrongCsvFormat(INVALID_DATE);
+    // cout << "validated month" << endl; 
     s_day = date.substr(second_minus + 1, 2);
     if (s_day.size() < 2 || (v_day = str_to_int(s_day)) <= 0)
         throw CsvHash::WrongCsvFormat(INVALID_DATE);
     validate_day(v_year, v_month, v_day);
-    if (date.size() > second_minus + 2)
+    // cout << "day is right: "<< v_day << endl;
+    // cout << "date size is : " << date.size() << "with value |" << date << "|" << endl;
+    // cout << "second minus pos: " << second_minus + 2 << endl;
+    if (date.size() > second_minus + 3)
         throw CsvHash::WrongCsvFormat(INVALID_DATE);
+    // cout << "date is finished: " << date << endl;
 }
 
 double  parse_price(string &s_price)
@@ -160,8 +168,8 @@ double    CsvHash::getPrice(string &date)
     if (date_prices.find(date) != date_prices.end())
         return date_prices[date];
     map<string, double>::iterator prev = date_prices.lower_bound(date);
-    if (prev != date_prices.end())
-        return prev->second;
+    if (prev != date_prices.end() && prev != date_prices.begin())
+        return (--prev)->second;
     else
         throw CsvHash::WrongCsvFormat(INVALID_PRICE);
 }
@@ -193,7 +201,7 @@ BtcWallet::BtcWalletExcept::BtcWalletExcept(BTCWALLET_ERR err_c, string info): c
             info_data += info;
             break;
         case (BAD_DATE):
-            info_data += "bad input =>";
+            info_data += "bad input => ";
             info_data += info;
             break;
         case (NEGATIVE_COUNT):
@@ -256,6 +264,7 @@ double parse_value(const string &s_value)
         throw BtcWallet::BtcWalletExcept(WRONG_FILE_FORMAT, ": no value supplied");
     size_t i = -1;
     bool point_set = false;
+    // cout << "the string value is|" << s_value << "|" << endl;
     while (++i < s_value.size())
     {
         if (std::isdigit(s_value[i]))
@@ -290,14 +299,14 @@ void BtcWallet::handleLine(const string &line)
         price = csv_data->getPrice(date);
     }
     catch (const CsvHash::WrongCsvFormat &e)
-    {       
+    {
         if (e.err_c == INVALID_PRICE)
             cout << "Error: no valid date price found" << endl;
         else if (e.err_c == INVALID_DATE)
             throw BtcWallet::BtcWalletExcept(BAD_DATE, date);
         return;
     }
-    string s_value = line.substr(first_space + 2);
+    string s_value = line.substr(first_space + 3);
     try
     {
         value = parse_value(s_value);
@@ -307,7 +316,7 @@ void BtcWallet::handleLine(const string &line)
         std::cout << e.what() << endl;
         return;
     }
-    cout << date << "=>" << s_value << " = " << value * price << endl;
+    cout << date << "=> " << s_value << " = " << value * price << endl;
 }
 
 BtcWallet::~BtcWallet()
