@@ -6,7 +6,7 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 12:58:16 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/12/15 16:23:24 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/12/24 20:00:47 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include <exception>
 #include <limits.h>
 #include <utility>
+#include <cstdlib>
 
 using std::ifstream;
 using std::string;
@@ -40,7 +41,6 @@ enum CSV_ERRORS
     DUPLICATE_DATE,
 };
 
-int     str_is_int(string &str);
 void    parse_date(string &date);
 
 class CsvHash
@@ -85,7 +85,7 @@ enum BTCWALLET_ERR
 class BtcWallet
 {
     private:
-        CsvHash &csv_data;
+        CsvHash *csv_data;
         ifstream ifs;
     public:
         class BtcWalletExcept : public exception

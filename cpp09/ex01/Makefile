@@ -1,6 +1,6 @@
 NAME = RPN
 
-FLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address
+FLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRCS = main.cpp RPN.cpp
 

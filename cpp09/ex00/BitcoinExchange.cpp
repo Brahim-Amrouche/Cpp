@@ -6,7 +6,7 @@
 /*   By: bamrouch <bamrouch@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 12:58:41 by bamrouch          #+#    #+#             */
-/*   Updated: 2023/12/15 16:29:03 by bamrouch         ###   ########.fr       */
+/*   Updated: 2023/12/24 18:49:19by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,26 +22,30 @@ const char *CsvHash::FileOpenFailed::what() const throw()
 CsvHash::WrongCsvFormat::WrongCsvFormat(const int new_err): err_c(new_err)
 {}
 
+CsvHash::WrongCsvFormat::~WrongCsvFormat() throw()
+{}
+
 const char *CsvHash::WrongCsvFormat::what() const throw()
 {
     switch (err_c)
     {
-        case CSV_ERRORS::WRONG_HEADER:
+        case WRONG_HEADER:
             return "Wrong header in data file";
-        case CSV_ERRORS::EMPTY_DATA:
+        case EMPTY_DATA:
             return "Empty Csv data";
-        case CSV_ERRORS::BAD_CSV_FORMAT:
+        case BAD_CSV_FORMAT:
             return "Bad Csv Format";
-        case CSV_ERRORS::INVALID_DATE:
+        case INVALID_DATE:
             return "Invalid date format";
-        case CSV_ERRORS::INVALID_PRICE:
+        case INVALID_PRICE:
             return "Invalid price";
-        case CSV_ERRORS::DUPLICATE_DATE:
+        case DUPLICATE_DATE:
             return "Duplicated Date key";
         default:
             return "Undefined Error";
     }
 }
+
 
 CsvHash::CsvHash()
 {
@@ -51,11 +55,11 @@ CsvHash::CsvHash()
     string buff;
     std::getline(ifs, buff);
     if (buff != CSV_HEADER)
-        throw CsvHash::WrongCsvFormat(CSV_ERRORS::WRONG_HEADER);
+        throw CsvHash::WrongCsvFormat(WRONG_HEADER);
     while (std::getline(ifs, buff))
         hashPrices(buff);
     if (date_prices.empty())
-        throw CsvHash::WrongCsvFormat(CSV_ERRORS::EMPTY_DATA);
+        throw CsvHash::WrongCsvFormat(EMPTY_DATA);
 }
 
 int    str_to_int(string &str)
@@ -74,17 +78,17 @@ int    str_to_int(string &str)
     return n;
 }
 
-bool validate_day(const int &year,const int &month,const int &day)
+void validate_day(const int &year,const int &month,const int &day)
 {
     if (day <= 0)
-        throw CsvHash::WrongCsvFormat(CSV_ERRORS::INVALID_DATE);
+        throw CsvHash::WrongCsvFormat(INVALID_DATE);
     if ((month == 1 || month == 3 || month == 5 
     || month == 7 || month == 8 || month == 10 || month == 12) && day > 31)
-        throw CsvHash::WrongCsvFormat(CSV_ERRORS::INVALID_DATE);
+        throw CsvHash::WrongCsvFormat(INVALID_DATE);
     if ((month == 4 || month == 6 || month == 9 || month == 11) && day > 30)
-        throw CsvHash::WrongCsvFormat(CSV_ERRORS::INVALID_DATE);
+        throw CsvHash::WrongCsvFormat(INVALID_DATE);
     if (month == 2 && ((year % 4 && day > 29) || day > 28))
-        throw CsvHash::WrongCsvFormat(CSV_ERRORS::INVALID_DATE);
+        throw CsvHash::WrongCsvFormat(INVALID_DATE);
 }
 
 void parse_date(string &date)
@@ -93,30 +97,30 @@ void parse_date(string &date)
     int v_year, v_month, v_day;
     size_t first_minus, second_minus;
     if ((first_minus = date.find_first_of('-')) == string::npos)
-        throw CsvHash::WrongCsvFormat(CSV_ERRORS::INVALID_DATE);
+        throw CsvHash::WrongCsvFormat(INVALID_DATE);
     s_year = date.substr(0, first_minus);
-    if (s_year.size() == 0 || (v_year = str_is_int(s_year)) <= 0)
-        throw CsvHash::WrongCsvFormat(CSV_ERRORS::INVALID_DATE);
+    if (s_year.size() == 0 || (v_year = str_to_int(s_year)) <= 0)
+        throw CsvHash::WrongCsvFormat(INVALID_DATE);
     if ((second_minus = date.find_first_of('-', first_minus + 1)) == string::npos
         || second_minus - first_minus != 3)
-        throw CsvHash::WrongCsvFormat(CSV_ERRORS::INVALID_DATE);
+        throw CsvHash::WrongCsvFormat(INVALID_DATE);
     s_month = date.substr(first_minus + 1, 2);
-    if (s_month.size() < 2 || (v_month = str_is_int(s_month)) <= 0)
-        throw CsvHash::WrongCsvFormat(CSV_ERRORS::INVALID_DATE);
+    if (s_month.size() < 2 || (v_month = str_to_int(s_month)) <= 0)
+        throw CsvHash::WrongCsvFormat(INVALID_DATE);
     if (v_month < 1 || v_month > 12)
-        throw CsvHash::WrongCsvFormat(CSV_ERRORS::INVALID_DATE);
+        throw CsvHash::WrongCsvFormat(INVALID_DATE);
     s_day = date.substr(second_minus + 1, 2);
-    if (s_day.size() < 2 || (v_day = str_is_int(s_day)) <= 0)
-        throw CsvHash::WrongCsvFormat(CSV_ERRORS::INVALID_DATE);
+    if (s_day.size() < 2 || (v_day = str_to_int(s_day)) <= 0)
+        throw CsvHash::WrongCsvFormat(INVALID_DATE);
     validate_day(v_year, v_month, v_day);
     if (date.size() > second_minus + 2)
-        throw CsvHash::WrongCsvFormat(CSV_ERRORS::INVALID_DATE);
+        throw CsvHash::WrongCsvFormat(INVALID_DATE);
 }
 
 double  parse_price(string &s_price)
 {
     if (s_price.size() == 0)
-        throw CsvHash::WrongCsvFormat(CSV_ERRORS::INVALID_PRICE);
+        throw CsvHash::WrongCsvFormat(INVALID_PRICE);
     size_t i = -1;
     bool  point_set = false;
     while (++i < s_price.size())
@@ -126,13 +130,13 @@ double  parse_price(string &s_price)
         else if (s_price[i] == '.' && !point_set)
             point_set = true;
         else
-            throw CsvHash::WrongCsvFormat(CSV_ERRORS::INVALID_PRICE);
+            throw CsvHash::WrongCsvFormat(INVALID_PRICE);
     }
     const char *start = s_price.c_str();
     char *end;
     double v_price = std::strtod(start, &end);
     if (start == end || v_price < 0)
-        throw CsvHash::WrongCsvFormat(CSV_ERRORS::INVALID_PRICE);
+        throw CsvHash::WrongCsvFormat(INVALID_PRICE);
     return v_price;
 }
 
@@ -140,14 +144,14 @@ void    CsvHash::hashPrices(string &row)
 {
     size_t comma_pos;
     if ((comma_pos = row.find_first_of(',')) == string::npos)
-        throw CsvHash::WrongCsvFormat(CSV_ERRORS::BAD_CSV_FORMAT);
+        throw CsvHash::WrongCsvFormat(BAD_CSV_FORMAT);
     string date = row.substr(0, comma_pos);
     parse_date(date);
     string price = row.substr(comma_pos + 1);
     double val = parse_price(price);
     if (date_prices.find(date) != date_prices.end())
-        throw CsvHash::WrongCsvFormat(CSV_ERRORS::DUPLICATE_DATE);
-    date_prices.insert(date, price);
+        throw CsvHash::WrongCsvFormat(DUPLICATE_DATE);
+    date_prices.insert(std::pair<string, double>(date, val));
 }
 
 double    CsvHash::getPrice(string &date)
@@ -159,15 +163,17 @@ double    CsvHash::getPrice(string &date)
     if (prev != date_prices.end())
         return prev->second;
     else
-        throw CsvHash::WrongCsvFormat(CSV_ERRORS::INVALID_PRICE);
+        throw CsvHash::WrongCsvFormat(INVALID_PRICE);
 }
 
 CsvHash::CsvHash(const CsvHash &cpy_csv)
 {
+    (void) cpy_csv;
 }
 
 CsvHash &CsvHash::operator=(const CsvHash &eq_csv)
 {
+    (void) eq_csv;
     return (*this);
 }
 
@@ -179,21 +185,21 @@ BtcWallet::BtcWalletExcept::BtcWalletExcept(BTCWALLET_ERR err_c, string info): c
 {
     switch(code)
     {
-        case (BTCWALLET_ERR::WRONG_FILE):
+        case (WRONG_FILE):
             info_data += "could not open file.";
             break;
-        case (BTCWALLET_ERR::WRONG_FILE_FORMAT):
+        case (WRONG_FILE_FORMAT):
             info_data += "wrong file format";
             info_data += info;
             break;
-        case (BTCWALLET_ERR::BAD_DATE):
+        case (BAD_DATE):
             info_data += "bad input =>";
             info_data += info;
             break;
-        case (BTCWALLET_ERR::NEGATIVE_COUNT):
+        case (NEGATIVE_COUNT):
             info_data += "not a positive number.";
             break;
-        case (BTCWALLET_ERR::GREAT_COUNT):
+        case (GREAT_COUNT):
             info_data += "too large a number.";
             break;
         default:
@@ -206,22 +212,22 @@ const char *BtcWallet::BtcWalletExcept::what() const throw()
     return info_data.c_str();
 }
 
-BtcWallet::BtcWalletExcept::~BtcWalletExcept()
+BtcWallet::BtcWalletExcept::~BtcWalletExcept() throw()
 {};
 
 
 BtcWallet::BtcWallet()
 {};
 
-BtcWallet::BtcWallet(const string &path, CsvHash &data):csv_data(data)
+BtcWallet::BtcWallet(const string &path, CsvHash &data):csv_data(&data)
 {
-    ifs.open(path, std::ios::in);
+    ifs.open(path.c_str(), std::ios::in);
     if (!ifs.is_open())
-        throw BtcWallet::BtcWalletExcept(BTCWALLET_ERR::WRONG_FILE, "");
+        throw BtcWallet::BtcWalletExcept(WRONG_FILE, "");
     string buff;
     std::getline(ifs, buff);
     if (buff != INPUT_HEADER)
-        throw BtcWallet::BtcWalletExcept(BTCWALLET_ERR::WRONG_FILE_FORMAT, ": invalid header");
+        throw BtcWallet::BtcWalletExcept(WRONG_FILE_FORMAT, ": invalid header");
     while (std::getline(ifs, buff))
     {
         try
@@ -240,13 +246,14 @@ BtcWallet::BtcWallet(const BtcWallet &cpy_btc):csv_data(cpy_btc.csv_data)
 
 BtcWallet &BtcWallet::operator=(const BtcWallet &eq_btc)
 {
+    (void) eq_btc;
     return (*this);
 }
 
 double parse_value(const string &s_value)
 {
     if (s_value.size() == 0)
-        throw BtcWallet::BtcWalletExcept(BTCWALLET_ERR::WRONG_FILE_FORMAT, ": no value supplied");
+        throw BtcWallet::BtcWalletExcept(WRONG_FILE_FORMAT, ": no value supplied");
     size_t i = -1;
     bool point_set = false;
     while (++i < s_value.size())
@@ -256,15 +263,15 @@ double parse_value(const string &s_value)
         else if (s_value[i] == '.' && !point_set)
             point_set = true;
         else if (s_value[i] == '-')
-            throw BtcWallet::BtcWalletExcept(BTCWALLET_ERR::NEGATIVE_COUNT,"");
+            throw BtcWallet::BtcWalletExcept(NEGATIVE_COUNT,"");
         else
-            throw BtcWallet::BtcWalletExcept(BTCWALLET_ERR::WRONG_FILE_FORMAT, ": wrong value format");
+            throw BtcWallet::BtcWalletExcept(WRONG_FILE_FORMAT, ": wrong value format");
     }
     const char *start = s_value.c_str();
     char *end;
     double v_value = std::strtod(start, &end);
     if (start == end || v_value < 0 || v_value > 1000)
-        throw BtcWallet::BtcWalletExcept(BTCWALLET_ERR::GREAT_COUNT, "");
+        throw BtcWallet::BtcWalletExcept(GREAT_COUNT, "");
     return v_value;
 }
 
@@ -273,22 +280,21 @@ void BtcWallet::handleLine(const string &line)
     size_t first_space = line.find_first_of(' ');
     if (first_space == string::npos || line[first_space + 1] != '|'
         || line[first_space + 2] != ' ')
-        throw BtcWallet::BtcWalletExcept(BTCWALLET_ERR::WRONG_FILE_FORMAT, ": invalid line formating");
+        throw BtcWallet::BtcWalletExcept(WRONG_FILE_FORMAT, ": invalid line formating");
     string date = line.substr(0, first_space);
     if (date.size() == 0)
-        throw BtcWallet::BtcWalletExcept(BTCWALLET_ERR::WRONG_FILE_FORMAT, ": no date supplied");
+        throw BtcWallet::BtcWalletExcept(WRONG_FILE_FORMAT, ": no date supplied");
     double price = -1, value = -1;
     try
     {
-        price = csv_data.getPrice(date);
+        price = csv_data->getPrice(date);
     }
     catch (const CsvHash::WrongCsvFormat &e)
-    {
-        
-        if (e.err_c == CSV_ERRORS::INVALID_PRICE)
+    {       
+        if (e.err_c == INVALID_PRICE)
             cout << "Error: no valid date price found" << endl;
-        else if (e.err_c == CSV_ERRORS::INVALID_DATE)
-            throw BtcWallet::BtcWalletExcept(BTCWALLET_ERR::BAD_DATE, date);
+        else if (e.err_c == INVALID_DATE)
+            throw BtcWallet::BtcWalletExcept(BAD_DATE, date);
         return;
     }
     string s_value = line.substr(first_space + 2);
